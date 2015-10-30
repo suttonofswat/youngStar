@@ -64,6 +64,7 @@ module.exports = React.createClass({
 				)
 		}else{
 			//getting the sum of all of the grade points, then getting the average grade for that subject.
+			
 			var myArray = [];
 			this.state.subject.forEach(function(index) {
 				myArray.push(index.get('assignmentPoints'));
@@ -85,7 +86,7 @@ module.exports = React.createClass({
 			}else if(averageNum === 5){
 				avgGrade='B';
 				console.log(avgGrade);
-			}else if(averageNum === 10){
+			}else if(averageNum > 6){
 				avgGrade='A';
 				console.log(avgGrade);
 			}

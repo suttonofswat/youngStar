@@ -21,9 +21,6 @@ body {
   font-family: "Lato" !important;
   background-color: #A7E3ED !important; }
 
-a {
-  color: #fff !important; }
-
 nav {
   background-color: #008D9F; }
   nav .navbar {
@@ -39,6 +36,8 @@ nav {
         padding-top: 10px;
         padding-bottom: 10px;
         line-height: 20px; }
+        nav .navbar-default ul li a {
+          color: #fff; }
     nav .navbar-default .navbar-brand {
       color: #fff;
       box-sizing: border-box; }

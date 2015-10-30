@@ -33,6 +33,7 @@ module.exports = React.createClass({
 	//pushing links to the navigation based on who is logged in
 		if(!currentUser){
 			Links.push(this.createNavLink('login', 'Login'));
+			Links.push(this.createNavLink('register', 'Register'));
 		}
 		else {
 

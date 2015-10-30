@@ -57,7 +57,7 @@ module.exports = React.createClass({
 			},
 			{
 				success: (u) => {
-					this.props.router.navigate('', {trigger: true});
+					this.props.router.navigate('addChild', {trigger: true});
 					console.log('it worked!')
 				},
 				error: (u, error) => {

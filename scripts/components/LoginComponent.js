@@ -17,13 +17,13 @@ module.exports = React.createClass({
 			<div className="col-md-6 col-md-offset-3 box-shadow--8dp formBlock">		
 					<form onSubmit={this.onLogin} className="form-horizontal">
 						<div className="form-group">
-							<label htmlFor="inputEmail3" className="col-sm-2 control-label">Email</label>
+							<label htmlFor="inputEmail3" className="col-sm-2 control-label">Username:</label>
 							<div className="col-sm-10">
 								<input type="text" ref="email" className="form-control" id="inputEmail3" placeholder="Username" />
 							</div>
 						</div>
 						<div className="form-group">
-							<label htmlFor="inputPassword3" className="col-sm-2 control-label">Password</label>
+							<label htmlFor="inputPassword3" className="col-sm-2 control-label">Password:</label>
 							<div className="col-sm-10">
 								<input type="password" ref="password" className="form-control" id="inputPassword3" placeholder="Password" />
 							</div>

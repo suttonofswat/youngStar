@@ -12,6 +12,7 @@ var LoginComponent = require('./components/LoginComponent');
 var HomeComponent = require('./components/HomeComponent');
 var RegisterComponent = require('./components/RegisterComponent');
 // var StudentModel = require('./models/StudentModel');
+var AddChildComponent = require('./components/AddChildComponent');
 var PointBoardComponent = require('./components/PointBoardComponent');
 var AssignmentDetailsComponent = require('./components/AssignmentDetailComponent');
 
@@ -25,6 +26,7 @@ var Router = Backbone.Router.extend({
 		'' : 'home',
 		'login' : 'login',
 		'register': 'register',
+		'addChild': 'addChild',
 		'pointBoard/:id': 'pointBoard',
 		'assignmentDetails/:id/:subject': 'assignmentDetails'
 	},
@@ -33,6 +35,9 @@ var Router = Backbone.Router.extend({
 	},
 	register: function() {
 		ReactDOM.render(<RegisterComponent router={r} />, app);
+	},
+	addChild: function() {
+		ReactDOM.render(<AddChildComponent router={r} />, app);
 	},
 	pointBoard: function(id) {
 		ReactDOM.render(
