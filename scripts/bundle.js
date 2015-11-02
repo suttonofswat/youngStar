@@ -34592,11 +34592,11 @@ module.exports = React.createClass({
 			this.state.allStudents.map(function (a) {
 				BtnLinks.push(React.createElement(
 					'li',
-					{ key: a.id },
+					{ className: 'boardLinks', key: a.id },
 					React.createElement(
 						'a',
 						{ href: '#pointBoard/' + a.id },
-						a.get('firstName'),
+						a.get('firstName'.toUpperCase()),
 						's Board'
 					)
 				));
@@ -34604,50 +34604,84 @@ module.exports = React.createClass({
 
 			Links.push(React.createElement(
 				'li',
-				{ key: 'logout' },
+				{ className: 'greyBtn', key: 'logout' },
 				React.createElement(
 					'a',
 					{ href: '#', onClick: this.onLogout },
-					'Logout'
+					'LOGOUT'
 				)
 			));
 		}
 
 		return React.createElement(
-			'nav',
-			{ className: 'navbar navbar-default' },
+			'div',
+			null,
 			React.createElement(
-				'div',
-				{ className: 'container-fluid' },
+				'nav',
+				{ className: 'navbar navbar-default' },
 				React.createElement(
 					'div',
-					{ className: 'navbar-header' },
+					{ className: 'container-fluid' },
 					React.createElement(
-						'button',
-						{ type: 'button', id: 'navCollapse', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+						'div',
+						{ className: 'navbar-header' },
 						React.createElement(
-							'span',
-							{ className: 'sr-only' },
-							'Toggle navigation'
+							'button',
+							{ type: 'button', id: 'navCollapse', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1', 'aria-expanded': 'false' },
+							React.createElement(
+								'span',
+								{ className: 'sr-only' },
+								'Toggle navigation'
+							),
+							React.createElement('span', { className: 'icon-bar' }),
+							React.createElement('span', { className: 'icon-bar' }),
+							React.createElement('span', { className: 'icon-bar' })
 						),
-						React.createElement('span', { className: 'icon-bar' }),
-						React.createElement('span', { className: 'icon-bar' }),
-						React.createElement('span', { className: 'icon-bar' })
+						React.createElement('a', { className: 'navbar-brand', href: '#' })
 					),
 					React.createElement(
-						'a',
-						{ className: 'navbar-brand col-md-4', href: '#' },
-						'youngStar'
+						'div',
+						{ className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+						React.createElement(
+							'ul',
+							null,
+							React.createElement(
+								'div',
+								{ className: 'visible-xs' },
+								BtnLinks
+							),
+							React.createElement(
+								'div',
+								{ className: 'mainNavLinks' },
+								Links
+							)
+						)
 					)
-				),
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'navbar subnav hidden-xs', role: 'navigation' },
 				React.createElement(
 					'div',
-					{ className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+					{ className: 'navbar-inner' },
 					React.createElement(
-						'ul',
-						null,
-						Links,
-						BtnLinks
+						'div',
+						{ className: 'container' },
+						React.createElement(
+							'h3',
+							{ className: 'kBoard' },
+							'Kids Boards:'
+						),
+						React.createElement(
+							'ul',
+							{ className: 'kLinks' },
+							React.createElement(
+								'h4',
+								null,
+								BtnLinks
+							)
+						)
 					)
 				)
 			)
@@ -34873,67 +34907,62 @@ module.exports = React.createClass({
 		}
 		return React.createElement(
 			'div',
-			{ className: 'container' },
+			{ className: 'col-md-6 col-md-offset-3 box-shadow--8dp formBlock' },
 			React.createElement(
-				'div',
-				{ className: 'row' },
+				'form',
+				{ className: 'col s12', onSubmit: this.onRegister },
+				errorElement,
 				React.createElement(
-					'form',
-					{ className: 'col s12', onSubmit: this.onRegister },
+					'div',
+					{ className: 'form-group' },
 					React.createElement(
-						'h1',
-						null,
-						'Register'
-					),
-					errorElement,
-					React.createElement(
-						'div',
-						{ className: 'form-group' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
-							'UserName'
-						),
-						React.createElement(
-							'div',
-							{ className: 'col-sm-10' },
-							React.createElement('input', { type: 'text', ref: 'username', className: 'form-control', id: 'inputEmail3' })
-						)
+						'label',
+						{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
+						'UserName'
 					),
 					React.createElement(
 						'div',
-						{ className: 'form-group' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
-							'Email'
-						),
-						React.createElement(
-							'div',
-							{ className: 'col-sm-10' },
-							React.createElement('input', { type: 'text', ref: 'email', className: 'form-control', id: 'inputEmail3' })
-						)
+						{ className: 'col-sm-10' },
+						React.createElement('input', { type: 'text', ref: 'username', className: 'form-control', id: 'inputEmail3' })
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'form-group' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
+						'Email'
 					),
 					React.createElement(
 						'div',
-						{ className: 'form-group' },
-						React.createElement(
-							'label',
-							{ htmlFor: 'inputPassword3', className: 'col-sm-2 control-label' },
-							'Password'
-						),
-						React.createElement(
-							'div',
-							{ className: 'col-sm-10' },
-							React.createElement('input', { type: 'password', ref: 'password', className: 'form-control', id: 'inputPassword3' })
-						)
+						{ className: 'col-sm-10' },
+						React.createElement('input', { type: 'text', ref: 'email', className: 'form-control', id: 'inputEmail3' })
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'form-group' },
+					React.createElement(
+						'label',
+						{ htmlFor: 'inputPassword3', className: 'col-sm-2 control-label' },
+						'Password'
 					),
 					React.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: 'col-sm-10' },
+						React.createElement('input', { type: 'password', ref: 'password', className: 'form-control', id: 'inputPassword3' })
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'form-group' },
+					React.createElement(
+						'div',
+						{ className: 'col-sm-offset-2 col-sm-10' },
 						React.createElement(
 							'button',
-							null,
+							{ type: 'submit', className: 'btn btn-default' },
 							'Register'
 						)
 					)

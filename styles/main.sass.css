@@ -18,29 +18,42 @@
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); }
 
 body {
-  font-family: "Lato" !important;
-  background-color: #A7E3ED !important; }
+  margin: 0; }
+  body h1, body h2, body h3, body h4 {
+    font-family: 'Wendy One', sans-serif; }
+  body p {
+    font-family: "Lato"; }
 
-nav {
-  background-color: #008D9F; }
-  nav .navbar {
-    border-radius: 0; }
-  nav .navbar-default {
-    background-color: #008D9F; }
-    nav .navbar-default .navbar-collapse {
-      border: none; }
-    nav .navbar-default ul {
-      margin: 7.5px -15px;
-      list-style: none; }
-      nav .navbar-default ul li {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        line-height: 20px; }
-        nav .navbar-default ul li a {
-          color: #fff; }
-    nav .navbar-default .navbar-brand {
-      color: #fff;
-      box-sizing: border-box; }
+nav .navbar-default {
+  background-color: #008D9F;
+  border-color: #008D9F;
+  margin-bottom: 0;
+  border-radius: 0; }
+  nav .navbar-default .navbar-collapse {
+    border: none; }
+  nav .navbar-default ul {
+    margin: 7.5px -15px;
+    list-style: none; }
+    nav .navbar-default ul li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      line-height: 20px; }
+      nav .navbar-default ul li a {
+        color: #fff; }
+  nav .navbar-default .navbar-brand {
+    background-image: url("../images/youngstar-logo.png");
+    background-repeat: no-repeat;
+    padding: 0 85px;
+    border-top: 10px solid #008D9F;
+    box-sizing: border-box;
+    margin-left: 15px;
+    height: 57px; }
+
+nav .navbar-inner {
+  background-color: #EBF6F7;
+  list-style: none; }
+  nav .navbar-inner ul li {
+    list-style: none; }
 
 #navCollapse {
   background-color: #FB6124;
@@ -55,66 +68,43 @@ nav {
     border-radius: 2px; }
 
 @media screen and (min-width: 768px) {
-  nav {
-    background-color: #008D9F; }
-    nav .navbar {
-      border-radius: 0; }
-    nav .navbar-default {
-      background-color: #008D9F; }
-      nav .navbar-default .navbar-collapse {
-        border: none; }
-      nav .navbar-default ul {
-        margin: 0; }
-        nav .navbar-default ul li {
-          float: right;
-          width: 20%;
-          height: 70px;
-          background: #008D9F;
-          text-align: center;
-          -webkit-transition-duration: 50ms;
-          padding-top: 0px;
-          padding-bottom: 0px;
-          line-height: 0px;
-          transition: -webkit-transform 0.2s; }
-      nav .navbar-default .navbar-brand {
-        color: #fff;
-        box-sizing: border-box;
-        float: left; }
-  a {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 25px 0px;
-    text-wrap: none;
-    color: #fff; }
-  nav li:hover {
-    background: #008D9F;
-    color: #FFF;
-    -webkit-transform: scale(1.1) translate(0px, 5px);
-    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
-    -webkit-backface-visibility: hidden; }
-    nav li:hover a {
-      text-decoration: none;
-      font-size: 1.2em; }
-  .formBlock {
-    padding: 3em; }
-  .form-control {
-    margin-bottom: 1em; }
-  #subjectBoxes {
-    margin-top: 2em; }
-  #redeemHolder {
-    margin-top: 2em;
-    border: 1px solid black;
-    padding: 1em 4em; }
-  #dropdown {
-    margin-right: 0;
-    margin-left: 0;
-    margin-bottom: 0; }
-  .currentPts {
-    border: 1px solid black;
-    padding: 1em; }
-  .modal-content {
-    padding: 3em; }
-  textarea {
-    width: 100%; } }
+  nav .navbar-default ul li {
+    padding-top: 6px;
+    padding-bottom: 4px; }
+    nav .navbar-default ul li a {
+      color: #555;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      font-weight: bold;
+      letter-spacing: 1px; }
+      nav .navbar-default ul li a:hover {
+        text-decoration: none; }
+  .active {
+    color: #F46B32; }
+  .boardLinks {
+    display: inline;
+    padding-right: 2em; }
+    .boardLinks a {
+      color: #47BBB6; }
+      .boardLinks a:hover {
+        text-decoration: none;
+        color: #F46B32; }
+      .boardLinks a:focus {
+        text-decoration: none;
+        color: #F46B32; }
+  .kBoard {
+    position: absolute;
+    bottom: 6px;
+    left: 45px; }
+  .kLinks {
+    margin-left: 10em;
+    margin-top: 5px; }
+  .mainNavLinks {
+    position: absolute;
+    right: 30px; }
+  .greyBtn {
+    background-color: #E7E9EB;
+    padding: 0 20px;
+    border-radius: .2em;
+    border-bottom: 2px solid #ccc;
+    color: #000; } }

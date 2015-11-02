@@ -15,11 +15,9 @@ module.exports = React.createClass({
 			);
 		}
 		return (
-			<div className="container">
-				<div className="row">
+			<div className="col-md-6 col-md-offset-3 box-shadow--8dp formBlock">
 					<form className="col s12" onSubmit={this.onRegister}>
-						<h1>Register</h1>
-						{errorElement}
+							{errorElement}
 						<div className="form-group">
 							<label htmlFor="inputEmail3" className="col-sm-2 control-label">UserName</label>
 							<div className="col-sm-10">
@@ -38,11 +36,12 @@ module.exports = React.createClass({
 								<input type="password" ref="password" className="form-control" id="inputPassword3" />
 							</div>
 						</div>
-						<div className="row">
-							<button>Register</button>
+						<div className="form-group">
+							<div className="col-sm-offset-2 col-sm-10">
+								<button type="submit" className="btn btn-default">Register</button>
+							</div>
 						</div>
 					</form>
-				</div>
 			</div>
 		);
 	},

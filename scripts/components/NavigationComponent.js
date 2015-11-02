@@ -39,35 +39,54 @@ module.exports = React.createClass({
 
 	//mapping over students, the push to Links get first name
 				this.state.allStudents.map((a) => {
-					BtnLinks.push(<li key={a.id}><a href={'#pointBoard/'+a.id}>{a.get('firstName')}s Board</a></li>);
+					BtnLinks.push(
+						<li className="boardLinks" key={a.id}><a href={'#pointBoard/'+a.id}>{a.get('firstName')}s Board</a></li>
+						);
 
 				})
 			
-			Links.push(<li key={'logout'}><a href='#' onClick={this.onLogout}>Logout</a></li>);
+			Links.push(<li className="greyBtn" key={'logout'}><a href='#' onClick={this.onLogout}>LOGOUT</a></li>);
 		}
 
 		return (
-			<nav className="navbar navbar-default">
-					<div className="container-fluid">
-						<div className="navbar-header">
-							<button type="button" id="navCollapse" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-								<span className="sr-only">Toggle navigation</span>
-								<span className="icon-bar"></span>
-								<span className="icon-bar"></span>
-								<span className="icon-bar"></span>
-							</button>
-							<a className="navbar-brand col-md-4" href="#">youngStar</a>
+			<div>
+				<nav className="navbar navbar-default">
+						<div className="container-fluid">
+							<div className="navbar-header">
+								<button type="button" id="navCollapse" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+									<span className="sr-only">Toggle navigation</span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+								</button>
+								<a className="navbar-brand" href="#"></a>
+							</div>
+
+
+							<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul>
+									<div className="visible-xs">
+										{BtnLinks}
+									</div>
+									<div className="mainNavLinks">
+										{Links}
+									</div>
+
+								</ul>
+							</div>
 						</div>
-
-
-						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul>
-								{Links}
-								{BtnLinks}
-							</ul>
+					</nav>
+					<div className="navbar subnav hidden-xs" role="navigation">
+						<div className="navbar-inner">
+							<div className="container"> 
+								<h3 className="kBoard">Kids Boards:</h3>
+								<ul className="kLinks"> 
+										<h4>{BtnLinks}</h4>
+								</ul>	
+							</div>
 						</div>
 					</div>
-				</nav>
+			</div>
 		);
 	},
 	//when logout is clicked, routing the user to register page. 
@@ -79,7 +98,7 @@ module.exports = React.createClass({
 	createNavLink: function(url, label) {
 		var currentUrl = Backbone.history.getFragment();
 		if(currentUrl === url){
-			return (<li key={url}className="active"><a href={'#'+url}>{label}</a></li>);
+			return (<li key={url} className="active"><a href={'#'+url}>{label}</a></li>);
 		}
 		else{
 			return(<li key={url}><a href={'#'+url}>{label}</a></li>);

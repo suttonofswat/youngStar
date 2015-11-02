@@ -1,6 +1,9 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 $navColor: #008D9F;
 $button-color: #FB6124;
+$greyBtn: #E7E9EB;
+$lightBlue: #47BBB6;
+$orangeLinks: #F46B32;
 
  .box-shadow--2dp {
  	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
@@ -22,20 +25,24 @@ $button-color: #FB6124;
 }
 
 body{
-	font-family: "Lato"!important;
-	background-color: #A7E3ED!important;
+	h1,h2,h3,h4{
+		font-family: 'Wendy One', sans-serif;
+	}
+	p{
+		font-family: "Lato";
+	} 
+	margin: 0;
 
 }
 
 
 nav{
 
-  	background-color: $navColor;
-	.navbar{
-		border-radius: 0;
-	}
 	.navbar-default{
 		background-color: $navColor;
+		border-color: $navColor;
+		margin-bottom:0;
+		border-radius: 0;
 		.navbar-collapse{
 			border: none;
 		}
@@ -53,9 +60,24 @@ nav{
 			}
 		
 			.navbar-brand{
-				color: #fff;
-            	box-sizing: border-box;
+				background-image: url("../images/youngstar-logo.png");
+				background-repeat: no-repeat;
+				padding: 0 85px;
+				border-top: 10px solid $navColor;
+				box-sizing:border-box;
+				margin-left: 15px;
+				height: 57px;
 			}
+	}
+	.navbar-inner{
+		background-color:#EBF6F7;
+		list-style: none;
+			ul{
+				li{
+					list-style:none;
+				}
+			}
+
 	}
 }
 #navCollapse{
@@ -72,114 +94,112 @@ nav{
 						border-radius:2px;
 
 					}
+
 	}
+
 
 @media screen and (min-width:768px){
 	nav{
+		.navbar-default{
+				ul{
+					li{
+						padding-top: 6px;
+						padding-bottom: 4px;
+	    				a{
+	    					color: #555;
+	    					text-transform: uppercase;
+						    font-size: 0.8em;
+						    font-weight: bold;
+						    letter-spacing: 1px;
+						    	&:hover{
+						    		text-decoration: none;
 
-  	background-color: $navColor;
-	.navbar{
-		border-radius: 0;
-	}
-	.navbar-default{
-		background-color: $navColor;
-		.navbar-collapse{
-			border: none;
-		}
-			ul{
-				margin: 0;
-
-				li{
-						float:right;
-						width:20%;
-						height:70px;
-						background:$navColor;
-						text-align:center;
-						-webkit-transition-duration: 50ms;
-						padding-top: 0px;
-			    		padding-bottom: 0px;
-			    		line-height: 0px;
-			    		transition: -webkit-transform 0.2s;
+						    	}
+	    				}
+					}
 				}
-			}
-		
-			.navbar-brand{
-				color: #fff;
-            	box-sizing: border-box;
-            	float:left
-			}
-	}
-}
-		// nav li {
-		// 	display:inline-block;
-		// 	float:right;
-		// 	width:20%;
-		// 	height:70px;
-		// 	background:$navColor;
-		// 	text-align:center;
-		// 	-webkit-transition-duration: 50ms;
-		// 	padding-top: 0px;
-  //   		padding-bottom: 0px;
-  //   		line-height: 0px;
-  //   		transition: -webkit-transform 0.2s;
-		// }
-		
-		a {
-			text-decoration:none;
-			display:block;
-			width:100%;
-			height:100%;
-			padding:25px 0px;
-			text-wrap:none;
-			color: #fff;
-		}
-
-		nav li:hover {
-			background:$navColor;
-			color: #FFF;
-			-webkit-transform: scale(1.1) translate(0px,5px);
-			-webkit-box-shadow: 0px 3px 6px rgba(0,0,0,.3);
-			-webkit-backface-visibility: hidden;
-			a{
-				text-decoration: none;
-				font-size: 1.2em;
-			}
-		}
-		// nav li:active {
-		// 	-webkit-transform: scale(1.05) translate(0px,3px);
-		// 	-webkit-box-shadow: 0px 2px 3px rgba(0,0,0,.3);
-		// 	text-decoration: none;
-		// }
-		.formBlock{
-			padding: 3em;
-		}
-
-		.form-control{
-			margin-bottom: 1em;
-		}
-		#subjectBoxes{
-			margin-top: 2em;
-		}
-		#redeemHolder{
-			margin-top: 2em;
-			border: 1px solid black;
-			padding: 1em 4em;
-		}
-		#dropdown{
-			margin-right: 0;
-			margin-left: 0;
-			margin-bottom: 0;
-		}
-		.currentPts{
-			border: 1px solid black;
-			padding: 1em;
-		}
-		.modal-content{
-			padding: 3em;
-		}
-		textarea{
-			width: 100%;
+			
+			
 		}
 	
+	}
+		.active{
+			color: $orangeLinks;
+		}
+		.boardLinks{
+			display: inline;
+			padding-right: 2em;
+				a{
+					color: $lightBlue;
+						&:hover{
+								text-decoration:none;
+						    	color: $orangeLinks;
+						}
+						&:focus{
+							text-decoration:none;
+						    color: $orangeLinks;
+						}
+						// &:active{
+						// 	text-decoration:none;
+						//     color: $orangeLinks;
+						// }
+		
+				}
+			
+		}
+		.kBoard{
+			position:absolute;
+			bottom: 6px;
+			left: 45px;
+		}
+		.kLinks{
+			margin-left: 10em;
+    		margin-top: 5px;
+		}
+		.mainNavLinks{
+			position: absolute;
+			right: 30px;
+
+		}
+		.greyBtn{
+				background-color: $greyBtn;
+				padding: 0 20px;
+				border-radius: .2em;
+				border-bottom: 2px solid #ccc;
+				color: #000;
+				
+		}
+		
+	// 	.formBlock{
+	// 		padding: 3em;
+	// 	}
+
+	// 	.form-control{
+	// 		margin-bottom: 1em;
+	// 	}
+	// 	#subjectBoxes{
+	// 		margin-top: 2em;
+	// 	}
+	// 	#redeemHolder{
+	// 		margin-top: 2em;
+	// 		border: 1px solid black;
+	// 		padding: 1em 4em;
+	// 	}
+	// 	#dropdown{
+	// 		margin-right: 0;
+	// 		margin-left: 0;
+	// 		margin-bottom: 0;
+	// 	}
+	// 	.currentPts{
+	// 		border: 1px solid black;
+	// 		padding: 1em;
+	// 	}
+	// 	.modal-content{
+	// 		padding: 3em;
+	// 	}
+	// 	textarea{
+	// 		width: 100%;
+	// 	}
+
 }	
 
