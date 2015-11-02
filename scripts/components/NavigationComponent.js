@@ -45,8 +45,8 @@ module.exports = React.createClass({
 
 				})
 			
-			Links.push(<li className="greyBtn" key={'logout'}><a href='#' onClick={this.onLogout}>LOGOUT</a></li>);
-		}
+					Links.push(<li className="greyBtn" key={'logout'}><a href='#' onClick={this.onLogout}>LOGOUT</a></li>);
+				}
 
 		return (
 			<div>

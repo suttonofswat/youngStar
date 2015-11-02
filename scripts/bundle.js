@@ -34292,90 +34292,99 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	//class box with modal and form
+
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'col-xs-6 col-sm-3 col-md-4' },
+			{ className: 'col-sm-6' },
 			React.createElement(
 				'div',
-				{ className: 'thumbnail' },
+				{ className: 'subBox' },
 				React.createElement(
 					'div',
-					{ className: 'caption' },
-					React.createElement(
-						'h3',
-						null,
-						this.props.subject
-					),
-					React.createElement(
-						'button',
-						{ type: 'button', className: 'btn btn-primary', onClick: this.onModalLaunch },
-						'add new'
-					),
+					{ className: 'row' },
 					React.createElement(
 						'div',
-						{ ref: 'classBox', className: 'modal fade bs-example-modal-lg', role: 'dialog', 'aria-labelledby': 'myLargeModalLabel' },
+						{ className: 'col-sm-8' },
 						React.createElement(
-							'div',
-							{ className: 'modal-dialog modal-lg' },
-							React.createElement(
-								'div',
-								{ className: 'modal-content' },
-								React.createElement(
-									'form',
-									{ className: 'form-horizontal', onSubmit: this.onAddAssignment },
-									React.createElement(
-										'h3',
-										null,
-										'Add New ',
-										this.props.subject,
-										' Grade'
-									),
-									React.createElement('input', { type: 'text', ref: 'assignmentName', className: 'form-control', placeholder: 'Assignment Name' }),
-									React.createElement(
-										'div',
-										{ className: 'form-group', id: 'dropdown' },
-										React.createElement(
-											'select',
-											{ ref: 'assignmentType', className: 'form-control' },
-											React.createElement(
-												'option',
-												{ disabled: true, selected: true },
-												'Assignment Type'
-											),
-											React.createElement(
-												'option',
-												null,
-												'Homework'
-											),
-											React.createElement(
-												'option',
-												null,
-												'Project'
-											),
-											React.createElement(
-												'option',
-												null,
-												'Test'
-											)
-										)
-									),
-									React.createElement('input', { type: 'text', ref: 'grade', className: 'form-control', placeholder: 'Grade' }),
-									React.createElement('textarea', { className: 'form-control', ref: 'notes', rows: '3', placeholder: 'Notes' }),
-									React.createElement(
-										'button',
-										null,
-										'Add Assignment'
-									)
-								)
-							)
+							'h3',
+							{ className: 'subjectTitle' },
+							this.props.subject
 						)
 					),
 					React.createElement(
-						'a',
-						{ href: '#assignmentDetails/' + this.props.student.id + '/' + this.props.subject },
-						'all assignments'
+						'div',
+						{ className: 'col-sm-2' },
+						React.createElement(
+							'button',
+							{ type: 'button', id: 'orangeBtn', className: 'btn btn-primary btn-small', onClick: this.onModalLaunch },
+							'+'
+						)
 					)
+				),
+				React.createElement(
+					'div',
+					{ ref: 'classBox', className: 'modal fade bs-example-modal-lg', role: 'dialog', 'aria-labelledby': 'myLargeModalLabel' },
+					React.createElement(
+						'div',
+						{ className: 'modal-dialog modal-lg' },
+						React.createElement(
+							'div',
+							{ className: 'modal-content' },
+							React.createElement(
+								'form',
+								{ className: 'form-horizontal', onSubmit: this.onAddAssignment },
+								React.createElement(
+									'h3',
+									null,
+									'Add New ',
+									this.props.subject,
+									' Grade'
+								),
+								React.createElement('input', { type: 'text', ref: 'assignmentName', className: 'form-control', placeholder: 'Assignment Name' }),
+								React.createElement(
+									'div',
+									{ className: 'form-group', id: 'dropdown' },
+									React.createElement(
+										'select',
+										{ ref: 'assignmentType', className: 'form-control' },
+										React.createElement(
+											'option',
+											{ disabled: true, selected: true },
+											'Assignment Type'
+										),
+										React.createElement(
+											'option',
+											null,
+											'Homework'
+										),
+										React.createElement(
+											'option',
+											null,
+											'Project'
+										),
+										React.createElement(
+											'option',
+											null,
+											'Test'
+										)
+									)
+								),
+								React.createElement('input', { type: 'text', ref: 'grade', className: 'form-control', placeholder: 'Grade' }),
+								React.createElement('textarea', { className: 'form-control', ref: 'notes', rows: '3', placeholder: 'Notes' }),
+								React.createElement(
+									'button',
+									null,
+									'Add Assignment'
+								)
+							)
+						)
+					)
+				),
+				React.createElement(
+					'a',
+					{ href: '#assignmentDetails/' + this.props.student.id + '/' + this.props.subject },
+					'all assignments'
 				)
 			)
 		);
@@ -34596,7 +34605,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'a',
 						{ href: '#pointBoard/' + a.id },
-						a.get('firstName'.toUpperCase()),
+						a.get('firstName'),
 						's Board'
 					)
 				));
@@ -34779,42 +34788,55 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					'div',
-					null,
+					{ className: 'container' },
 					React.createElement(
-						'h2',
-						{ className: 'col-md-8' },
-						this.state.student.get('firstName'),
-						's Star Board'
-					),
-					React.createElement(
-						'h3',
-						{ className: 'col-md-3 col-md-offset-1' },
+						'div',
+						{ className: 'row' },
 						React.createElement(
 							'span',
-							{ className: 'currentPts' },
-							'Current Points: ',
-							this.state.student.get('points')
+							{ className: 'kHead col-sm-8' },
+							React.createElement(
+								'h2',
+								null,
+								this.state.student.get('firstName'),
+								's Star Board'
+							)
+						),
+						React.createElement(
+							'span',
+							{ className: 'currentPts col-sm-4' },
+							React.createElement(
+								'h2',
+								null,
+								'Current Points: ',
+								this.state.student.get('points')
+							)
 						)
 					)
 				),
+				React.createElement('hr', null),
 				React.createElement(
 					'div',
-					null,
+					{ className: 'container' },
 					React.createElement(
 						'div',
-						{ className: 'row col-md-8', id: 'subjectBoxes' },
-						React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Math' }),
-						React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Science' }),
-						React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Reading' }),
-						React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Social Studies' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-md-3 col-md-offset-1', id: 'redeemHolder' },
-						React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'afternoon activity' }),
-						React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'favorite dinner' }),
-						React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'movie night' }),
-						React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'yogurt trip' })
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-8', id: 'subjectBoxes' },
+							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Math' }),
+							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Science' }),
+							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Reading' }),
+							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Social Studies' })
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4', id: 'redeemHolder' },
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'afternoon activity' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'favorite dinner' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'movie night' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'yogurt trip' })
+						)
 					)
 				)
 			);
@@ -34854,21 +34876,34 @@ module.exports = React.createClass({
 				{ className: 'thumbnail' },
 				React.createElement(
 					'div',
-					{ className: 'caption' },
+					{ className: 'container' },
 					React.createElement(
 						'div',
-						null,
-						this.props.points
-					),
-					React.createElement(
-						'div',
-						null,
-						this.props.prize
-					),
-					React.createElement(
-						'button',
-						{ onClick: this.onRedeem },
-						'Redeem Points'
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-xs-8 col-sm-2' },
+							React.createElement(
+								'h5',
+								null,
+								this.props.prize
+							),
+							React.createElement(
+								'p',
+								null,
+								'Cost: ',
+								this.props.points
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-4 col-sm-2' },
+							React.createElement(
+								'button',
+								{ id: 'orangeBtn', className: 'btn btn-primary btn-small', onClick: this.onRedeem },
+								'REDEEM'
+							)
+						)
 					)
 				)
 			)

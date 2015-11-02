@@ -3,7 +3,8 @@ $navColor: #008D9F;
 $button-color: #FB6124;
 $greyBtn: #E7E9EB;
 $lightBlue: #47BBB6;
-$orangeLinks: #F46B32;
+$orange: #F46B32;
+$darkOrange: #CC4A1D;
 
  .box-shadow--2dp {
  	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
@@ -25,17 +26,27 @@ $orangeLinks: #F46B32;
 }
 
 body{
-	h1,h2,h3,h4{
+	h1,h2,h3, h4{
 		font-family: 'Wendy One', sans-serif;
 	}
 	p{
 		font-family: "Lato";
 	} 
 	margin: 0;
+	h5{
+		font-size: 20px;
+	}
 
 }
 
 
+#app{
+	hr{
+	border-top: 2px solid $navColor;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+}
 nav{
 
 	.navbar-default{
@@ -96,10 +107,45 @@ nav{
 					}
 
 	}
+#orangeBtn{
+	background-color: $orange;
+	color: #fff;
+	border-bottom: 2px solid $darkOrange;
+	text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    border-top: 0 solid $orange;
+    border-right: 0 solid $orange;
+    border-left: 0 solid $orange;
+    margin-top: 15px;
+    margin-left: -10px;
 
+
+}
+#subjectBoxes{
+	margin-top: 20px;
+}
+.subBox{
+	margin-bottom: 15px;
+	border: 1px solid black;
+		.row{
+			background-color: $lightBlue;
+			margin-top: 0;
+			margin-left:0;
+			margin-right: 0;
+		}
+		.subjectTitle{
+			
+			color: #fff;
+			
+		}
+}
 
 @media screen and (min-width:768px){
 	nav{
+		.navbar {
+			margin-bottom: 0;
+		}
 		.navbar-default{
 				ul{
 					li{
@@ -118,14 +164,17 @@ nav{
 	    				}
 					}
 				}
+			.container-fluid {
+				.navbar-brand {
+				margin-left: 30px;
+				padding-bottom: 3em;
+				}
+			}
 			
 			
 		}
 	
 	}
-		.active{
-			color: $orangeLinks;
-		}
 		.boardLinks{
 			display: inline;
 			padding-right: 2em;
@@ -133,16 +182,16 @@ nav{
 					color: $lightBlue;
 						&:hover{
 								text-decoration:none;
-						    	color: $orangeLinks;
+						    	color: $orange;
 						}
 						&:focus{
 							text-decoration:none;
-						    color: $orangeLinks;
+						    color: $orange;
 						}
-						// &:active{
-						// 	text-decoration:none;
-						//     color: $orangeLinks;
-						// }
+						&:active{
+							text-decoration:none;
+						    color: $orange;
+						}
 		
 				}
 			
@@ -170,36 +219,42 @@ nav{
 				
 		}
 		
-	// 	.formBlock{
-	// 		padding: 3em;
-	// 	}
+		.formBlock{
+			padding: 3em;
+		}
 
-	// 	.form-control{
-	// 		margin-bottom: 1em;
-	// 	}
-	// 	#subjectBoxes{
-	// 		margin-top: 2em;
-	// 	}
-	// 	#redeemHolder{
-	// 		margin-top: 2em;
-	// 		border: 1px solid black;
-	// 		padding: 1em 4em;
-	// 	}
-	// 	#dropdown{
-	// 		margin-right: 0;
-	// 		margin-left: 0;
-	// 		margin-bottom: 0;
-	// 	}
-	// 	.currentPts{
-	// 		border: 1px solid black;
-	// 		padding: 1em;
-	// 	}
-	// 	.modal-content{
-	// 		padding: 3em;
-	// 	}
-	// 	textarea{
-	// 		width: 100%;
-	// 	}
+		.form-control{
+			margin-bottom: 1em;
+		}
+		
+		
+		#dropdown{
+			margin-right: 0;
+			margin-left: 0;
+			margin-bottom: 0;
+		}
+		.kHead{
+			padding-top:1.7em;
+		}
+		.currentPts{
+			background-color: #EEF9F8;
+			padding: 1.7em 0.4em 0.35em 0.9em;
+		}
+		#redeemHolder{
+			background-color: #C7EAE9;
+		}
+		.redeemBox{
+			.thumbnail{
+			border: 1px solid #7ACECA;
+			margin-top: 20px;
+			}
+		}
+		.modal-content{
+			padding: 3em;
+		}
+		textarea{
+			width: 100%;
+		}
 
 }	
 

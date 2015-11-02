@@ -23,6 +23,13 @@ body {
     font-family: 'Wendy One', sans-serif; }
   body p {
     font-family: "Lato"; }
+  body h5 {
+    font-size: 20px; }
+
+#app hr {
+  border-top: 2px solid #008D9F;
+  margin-top: 0;
+  margin-bottom: 0; }
 
 nav .navbar-default {
   background-color: #008D9F;
@@ -67,7 +74,36 @@ nav .navbar-inner {
     height: 4px;
     border-radius: 2px; }
 
+#orangeBtn {
+  background-color: #F46B32;
+  color: #fff;
+  border-bottom: 2px solid #CC4A1D;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  border-top: 0 solid #F46B32;
+  border-right: 0 solid #F46B32;
+  border-left: 0 solid #F46B32;
+  margin-top: 15px;
+  margin-left: -10px; }
+
+#subjectBoxes {
+  margin-top: 20px; }
+
+.subBox {
+  margin-bottom: 15px;
+  border: 1px solid black; }
+  .subBox .row {
+    background-color: #47BBB6;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0; }
+  .subBox .subjectTitle {
+    color: #fff; }
+
 @media screen and (min-width: 768px) {
+  nav .navbar {
+    margin-bottom: 0; }
   nav .navbar-default ul li {
     padding-top: 6px;
     padding-bottom: 4px; }
@@ -79,8 +115,9 @@ nav .navbar-inner {
       letter-spacing: 1px; }
       nav .navbar-default ul li a:hover {
         text-decoration: none; }
-  .active {
-    color: #F46B32; }
+  nav .navbar-default .container-fluid .navbar-brand {
+    margin-left: 30px;
+    padding-bottom: 3em; }
   .boardLinks {
     display: inline;
     padding-right: 2em; }
@@ -90,6 +127,9 @@ nav .navbar-inner {
         text-decoration: none;
         color: #F46B32; }
       .boardLinks a:focus {
+        text-decoration: none;
+        color: #F46B32; }
+      .boardLinks a:active {
         text-decoration: none;
         color: #F46B32; }
   .kBoard {
@@ -107,4 +147,26 @@ nav .navbar-inner {
     padding: 0 20px;
     border-radius: .2em;
     border-bottom: 2px solid #ccc;
-    color: #000; } }
+    color: #000; }
+  .formBlock {
+    padding: 3em; }
+  .form-control {
+    margin-bottom: 1em; }
+  #dropdown {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0; }
+  .kHead {
+    padding-top: 1.7em; }
+  .currentPts {
+    background-color: #EEF9F8;
+    padding: 1.7em 0.4em 0.35em 0.9em; }
+  #redeemHolder {
+    background-color: #C7EAE9; }
+  .redeemBox .thumbnail {
+    border: 1px solid #7ACECA;
+    margin-top: 20px; }
+  .modal-content {
+    padding: 3em; }
+  textarea {
+    width: 100%; } }

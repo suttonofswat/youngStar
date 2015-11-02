@@ -37,22 +37,27 @@ module.exports = React.createClass({
 			console.log(this.state.student);
 			return (
 				<div>
-					<div>
-						<h2 className="col-md-8">{this.state.student.get('firstName')}s Star Board</h2>
-						<h3 className="col-md-3 col-md-offset-1"><span className="currentPts">Current Points: {this.state.student.get('points')}</span></h3>
+					<div className="container">
+						<div className="row">
+							<span className="kHead col-sm-8"><h2>{this.state.student.get('firstName')}s Star Board</h2></span>
+							<span className="currentPts col-sm-4"><h2>Current Points: {this.state.student.get('points')}</h2></span>
+						</div>					
 					</div>
-					<div>
-						<div className="row col-md-8" id="subjectBoxes">
-							<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Math"/>
-							<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Science"/>
-							<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Reading"/>
-							<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Social Studies"/>
-						</div>
-						<div className="col-md-3 col-md-offset-1" id="redeemHolder">
-							<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="40" prize="afternoon activity"/>
-							<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="60" prize="favorite dinner"/>
-							<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="80" prize="movie night"/>
-							<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="100" prize="yogurt trip"/>
+					<hr />
+					<div className="container">
+						<div className="row">
+							<div className="col-sm-8" id="subjectBoxes">
+										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Math"/>
+										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Science"/>
+										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Reading"/>
+										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Social Studies"/>
+							</div>
+							<div className="col-sm-4" id="redeemHolder">
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="40" prize="afternoon activity"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="60" prize="favorite dinner"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="80" prize="movie night"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="100" prize="yogurt trip"/>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -7,10 +7,16 @@ module.exports = React.createClass({
 		return (
 			<div className="redeemBox">
 				<div className="thumbnail">
-					<div className="caption">
-						<div>{this.props.points}</div>
-						<div>{this.props.prize}</div>
-						<button onClick={this.onRedeem}>Redeem Points</button>
+					<div className="container">
+						<div className="row">
+							<div className="col-xs-8 col-sm-2">
+								<h5>{this.props.prize}</h5>
+								<p>Cost: {this.props.points}</p>
+							</div>
+							<div className="col-xs-4 col-sm-2">
+								<button id="orangeBtn" className="btn btn-primary btn-small" onClick={this.onRedeem}>REDEEM</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

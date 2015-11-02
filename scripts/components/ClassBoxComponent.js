@@ -7,14 +7,19 @@ require('bootstrap');
 
 module.exports = React.createClass({
 	//class box with modal and form
+	
 	render: function(){
 		return (
-				<div className="col-xs-6 col-sm-3 col-md-4">
-					<div className="thumbnail">
-						<div className="caption">
-							<h3>{this.props.subject}</h3>
-							<button type="button" className="btn btn-primary" onClick={this.onModalLaunch}>add new</button>
-
+			<div className="col-sm-6">
+				<div className="subBox">
+						<div className="row">
+								<div className="col-sm-8">
+								<h3 className="subjectTitle">{this.props.subject}</h3>
+								</div>
+								<div className="col-sm-2">
+								<button type="button" id="orangeBtn" className="btn btn-primary btn-small" onClick={this.onModalLaunch}>+</button>
+								</div>
+						</div>
 							<div ref="classBox" className="modal fade bs-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div className="modal-dialog modal-lg">
 									<div className="modal-content">
@@ -37,9 +42,8 @@ module.exports = React.createClass({
 								</div>
 							</div>
 							<a href={`#assignmentDetails/${this.props.student.id}/${this.props.subject}`}>all assignments</a>
-						</div>
-					</div>
 				</div>
+			</div>
 
 
 		);
@@ -91,6 +95,7 @@ module.exports = React.createClass({
 	//having the points also saved to the student model's total points
 		var totalPoints = this.props.student.get('points') + gradePts;
 		this.props.student.save({points: totalPoints});
+
 	}
 	
 	
