@@ -3,11 +3,12 @@ var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 var StudentModel = require('../models/StudentModel');
 var AssignmentModel = require('../models/AssignmentModel');
+var LetterGradeBoxComponent = require('./LetterGradeBoxComponent');
 require('bootstrap');
 
 module.exports = React.createClass({
 	//class box with modal and form
-	
+
 	render: function(){
 		return (
 			<div className="col-sm-6">
@@ -41,7 +42,8 @@ module.exports = React.createClass({
 									</div>
 								</div>
 							</div>
-							<a href={`#assignmentDetails/${this.props.student.id}/${this.props.subject}`}>all assignments</a>
+							<LetterGradeBoxComponent studentId={this.props.student.id} subject={this.props.subject} />
+							<button className="viewAllAssign"><a href={`#assignmentDetails/${this.props.student.id}/${this.props.subject}`}>VIEW ALL ASSIGNMENTS</a></button>
 				</div>
 			</div>
 

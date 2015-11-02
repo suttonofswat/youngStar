@@ -34133,7 +34133,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":185,"backbone":1,"react":173,"react-dom":18}],175:[function(require,module,exports){
+},{"../models/StudentModel":186,"backbone":1,"react":173,"react-dom":18}],175:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34142,6 +34142,7 @@ var Backbone = require('backbone');
 var _ = require('backbone/node_modules/underscore');
 var AssignmentModel = require('../models/AssignmentModel');
 var StudentModel = require('../models/StudentModel');
+var LetterGradeBoxComponent = require('./LetterGradeBoxComponent');
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -34211,74 +34212,64 @@ module.exports = React.createClass({
 			);
 		});
 		//checking to make sure the student and subject has loaded.
-		if (!this.state.student || !this.state.subject) {
-			return React.createElement(
+		// if(!this.state.student || !this.state.subject){
+		// 	return(
+		// 			<div>
+		// 				Loading..
+		// 			</div>
+		// 		)
+		// }else{
+		// 	//getting the sum of all of the grade points, then getting the average grade for that subject.
+
+		// 	var myArray = [];
+		// 	this.state.subject.forEach(function(index) {
+		// 		myArray.push(index.get('assignmentPoints'));
+		// 	})
+		// 	var totalNumbers = 0
+		// 	myArray.length > 0 ? totalNumbers = myArray.reduce(function(a,b) {return a + b;}) : '';
+		// 	var averageNum = totalNumbers/myArray.length;
+
+		// 	var avgGrade='';
+		// 	if(averageNum === -10 ){
+		// 		avgGrade='F';
+		// 		console.log(avgGrade);
+		// 	}else if(averageNum === -5){
+		// 		avgGrade='D';
+		// 		console.log(avgGrade);
+		// 	}else if(averageNum === 0){
+		// 		avgGrade='C';
+		// 		console.log(avgGrade);
+		// 	}else if(averageNum === 5){
+		// 		avgGrade='B';
+		// 		console.log(avgGrade);
+		// 	}else if(averageNum > 6){
+		// 		avgGrade='A';
+		// 		console.log(avgGrade);
+		// 	}
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'h1',
+				null,
+				this.state.student.get('firstName'),
+				's ',
+				this.props.subject,
+				' Assignments'
+			),
+			React.createElement(LetterGradeBoxComponent, { studentId: this.state.student.id, subject: this.props.subject }),
+			React.createElement(
 				'div',
 				null,
-				'Loading..'
-			);
-		} else {
-			//getting the sum of all of the grade points, then getting the average grade for that subject.
-
-			var myArray = [];
-			this.state.subject.forEach(function (index) {
-				myArray.push(index.get('assignmentPoints'));
-			});
-			var totalNumbers = 0;
-			myArray.length > 0 ? totalNumbers = myArray.reduce(function (a, b) {
-				return a + b;
-			}) : '';
-			var averageNum = totalNumbers / myArray.length;
-
-			var avgGrade = '';
-			if (averageNum === -10) {
-				avgGrade = 'F';
-				console.log(avgGrade);
-			} else if (averageNum === -5) {
-				avgGrade = 'D';
-				console.log(avgGrade);
-			} else if (averageNum === 0) {
-				avgGrade = 'C';
-				console.log(avgGrade);
-			} else if (averageNum === 5) {
-				avgGrade = 'B';
-				console.log(avgGrade);
-			} else if (averageNum > 6) {
-				avgGrade = 'A';
-				console.log(avgGrade);
-			}
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h1',
-					null,
-					this.state.student.get('firstName'),
-					's ',
-					this.props.subject,
-					' Assignments'
-				),
-				React.createElement(
-					'div',
-					null,
-					'Average ',
-					this.props.subject,
-					' Grade: ',
-					avgGrade
-				),
-				React.createElement(
-					'div',
-					null,
-					'Total Points to date: ',
-					totalNumbers
-				),
-				subjectAssignment
-			);
-		}
+				'Total Points to date: ',
+				totalNumbers
+			),
+			subjectAssignment
+		);
 	}
 });
 
-},{"../models/AssignmentModel":184,"../models/StudentModel":185,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],176:[function(require,module,exports){
+},{"../models/AssignmentModel":185,"../models/StudentModel":186,"./LetterGradeBoxComponent":178,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34286,6 +34277,7 @@ var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 var StudentModel = require('../models/StudentModel');
 var AssignmentModel = require('../models/AssignmentModel');
+var LetterGradeBoxComponent = require('./LetterGradeBoxComponent');
 require('bootstrap');
 
 module.exports = React.createClass({
@@ -34381,10 +34373,15 @@ module.exports = React.createClass({
 						)
 					)
 				),
+				React.createElement(LetterGradeBoxComponent, { studentId: this.props.student.id, subject: this.props.subject }),
 				React.createElement(
-					'a',
-					{ href: '#assignmentDetails/' + this.props.student.id + '/' + this.props.subject },
-					'all assignments'
+					'button',
+					{ className: 'viewAllAssign' },
+					React.createElement(
+						'a',
+						{ href: '#assignmentDetails/' + this.props.student.id + '/' + this.props.subject },
+						'VIEW ALL ASSIGNMENTS'
+					)
 				)
 			)
 		);
@@ -34439,7 +34436,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":184,"../models/StudentModel":185,"backbone":1,"bootstrap":3,"react":173,"react-dom":18}],177:[function(require,module,exports){
+},{"../models/AssignmentModel":185,"../models/StudentModel":186,"./LetterGradeBoxComponent":178,"backbone":1,"bootstrap":3,"react":173,"react-dom":18}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34464,7 +34461,103 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":185,"backbone":1,"react":173,"react-dom":18}],178:[function(require,module,exports){
+},{"../models/StudentModel":186,"backbone":1,"react":173,"react-dom":18}],178:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+var _ = require('backbone/node_modules/underscore');
+var AssignmentModel = require('../models/AssignmentModel');
+var StudentModel = require('../models/StudentModel');
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			subject: [],
+			student: null
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		//setting the child and subject to the state.
+		var child = this.props.studentId;
+		var targetStudentModel = new StudentModel({ objectId: child });
+
+		var query = new Parse.Query(AssignmentModel);
+		query.equalTo('child', targetStudentModel).equalTo('subjectName', this.props.subject).find().then(function (subject) {
+			var newQuery = new Parse.Query(StudentModel);
+			newQuery.get(_this.props.studentId).then(function (student) {
+				_this.setState({ student: student, subject: subject });
+			}, function (err) {
+				console.log(err);
+			});
+		}, function (err) {
+			console.log(err);
+		});
+	},
+
+	render: function render() {
+		//checking to make sure the student and subject has loaded.
+		if (!this.state.student || !this.state.subject) {
+			return React.createElement(
+				'div',
+				null,
+				'Loading..'
+			);
+		} else {
+			//getting the sum of all of the grade points, then getting the average grade for that subject.
+
+			var myArray = [];
+			this.state.subject.forEach(function (index) {
+				myArray.push(index.get('assignmentPoints'));
+			});
+			var totalNumbers = 0;
+			myArray.length > 0 ? totalNumbers = myArray.reduce(function (a, b) {
+				return a + b;
+			}) : '';
+			var averageNum = totalNumbers / myArray.length;
+
+			var avgGrade = '';
+			if (averageNum === -10) {
+				avgGrade = 'F';
+				console.log(avgGrade);
+			} else if (averageNum === -5) {
+				avgGrade = 'D';
+				console.log(avgGrade);
+			} else if (averageNum === 0) {
+				avgGrade = 'C';
+				console.log(avgGrade);
+			} else if (averageNum === 5) {
+				avgGrade = 'B';
+				console.log(avgGrade);
+			} else if (averageNum > 6) {
+				avgGrade = 'A';
+				console.log(avgGrade);
+			}
+			return React.createElement(
+				'div',
+				{ className: 'avgGradeBox' },
+				React.createElement(
+					'div',
+					{ className: 'gradeTxt' },
+					'Average ',
+					this.props.subject,
+					' Grade:'
+				),
+				React.createElement(
+					'div',
+					{ className: 'grade' },
+					avgGrade
+				)
+			);
+		}
+	}
+});
+
+},{"../models/AssignmentModel":185,"../models/StudentModel":186,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],179:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34557,7 +34650,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":173,"react-dom":18}],179:[function(require,module,exports){
+},{"backbone":1,"react":173,"react-dom":18}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34739,7 +34832,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":185,"backbone":1,"react":173,"react-dom":18}],180:[function(require,module,exports){
+},{"../models/StudentModel":186,"backbone":1,"react":173,"react-dom":18}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34832,10 +34925,10 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'col-sm-4', id: 'redeemHolder' },
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'afternoon activity' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'favorite dinner' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'movie night' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'yogurt trip' })
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'Afternoon Activity' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'Favorite Dinner' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'Movie Night' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'Yogurt Trip' })
 						)
 					)
 				)
@@ -34857,7 +34950,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":185,"./ClassBoxComponent":176,"./RedeemBoxComponent":181,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],181:[function(require,module,exports){
+},{"../models/StudentModel":186,"./ClassBoxComponent":176,"./RedeemBoxComponent":182,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34918,7 +35011,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":173,"react-dom":18}],182:[function(require,module,exports){
+},{"backbone":1,"react":173,"react-dom":18}],183:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35028,7 +35121,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"backbone":1,"react":173,"react-dom":18}],183:[function(require,module,exports){
+},{"backbone":1,"react":173,"react-dom":18}],184:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -35086,21 +35179,21 @@ Backbone.history.start();
 
 ReactDOM.render(React.createElement(NavigationComponent, { router: r }), document.getElementById('nav'));
 
-},{"./components/AddChildComponent":174,"./components/AssignmentDetailComponent":175,"./components/HomeComponent":177,"./components/LoginComponent":178,"./components/NavigationComponent":179,"./components/PointBoardComponent":180,"./components/RegisterComponent":182,"backbone":1,"bootstrap":3,"jquery":17,"react":173,"react-dom":18}],184:[function(require,module,exports){
+},{"./components/AddChildComponent":174,"./components/AssignmentDetailComponent":175,"./components/HomeComponent":177,"./components/LoginComponent":179,"./components/NavigationComponent":180,"./components/PointBoardComponent":181,"./components/RegisterComponent":183,"backbone":1,"bootstrap":3,"jquery":17,"react":173,"react-dom":18}],185:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'AssignmentModel'
 });
 
-},{}],185:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'StudentModel'
 });
 
-},{}]},{},[183])
+},{}]},{},[184])
 
 
 //# sourceMappingURL=bundle.js.map

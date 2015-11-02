@@ -53,10 +53,10 @@ module.exports = React.createClass({
 										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Social Studies"/>
 							</div>
 							<div className="col-sm-4" id="redeemHolder">
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="40" prize="afternoon activity"/>
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="60" prize="favorite dinner"/>
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="80" prize="movie night"/>
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="100" prize="yogurt trip"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="40" prize="Afternoon Activity"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="60" prize="Favorite Dinner"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="80" prize="Movie Night"/>
+								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="100" prize="Yogurt Trip"/>
 							</div>
 						</div>
 					</div>
