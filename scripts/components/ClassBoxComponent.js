@@ -37,7 +37,7 @@ module.exports = React.createClass({
 											</div>
 											<input type="text" ref="grade" className="form-control" placeholder="Grade" />
 											<textarea className="form-control" ref="notes" rows="3" placeholder="Notes"></textarea>
-											<button>Add Assignment</button>
+											<button ref="addAssignmentButton">Add Assignment</button>
 										</form>
 									</div>
 								</div>
@@ -95,6 +95,25 @@ module.exports = React.createClass({
 
 		$(this.refs.classBox).modal('hide');
 		this.props.dispatcher.trigger('assignmentSubmit', gradePts);
+		
+		$(this.refs.addAssignmentButton).effect('transfer', {to: '#totalPoints', className: 'ui-effects-transfer'}, 1200)
+		if(gradePts > 0){
+			setTimeout(function(){
+	  			$('#totalPoints').animate({fontSize: '3em', color: '#FDAA1D'})
+			}, 1000);
+		}else{
+			setTimeout(function(){
+	  			$('#totalPoints').animate({fontSize: '1em', color: '#660000'})
+			}, 1000);
+		}
+
+		setTimeout(function(){
+  			$('#totalPoints').animate({fontSize: '30px', color: '#000'})
+		}, 1700);
+
+			
+		
+
 	//having the points also saved to the student model's total points
 		var totalPoints = this.props.student.get('points') + gradePts;
 		this.props.student.save({points: totalPoints});

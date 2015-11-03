@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 window.$ = require('jquery');
 window.jQuery = $;
+require('jquery-ui');
 require('bootstrap');
 
 var app = document.getElementById('app');

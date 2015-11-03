@@ -20,6 +20,12 @@
 .toggle {
   display: none; }
 
+.ui-effects-transfer {
+  background-image: url("../images/yellow-star-md.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1060; }
+
 body {
   margin: 0; }
   body h1, body h2, body h3, body h4 {

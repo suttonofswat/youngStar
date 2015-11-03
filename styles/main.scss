@@ -29,6 +29,12 @@ $teal: #00C0B9;
 .toggle{
 	display:none;
 }
+.ui-effects-transfer{
+	background-image: url("../images/yellow-star-md.png");
+	background-size:contain;
+	background-repeat: no-repeat;
+	z-index: 1060;
+}
 body{
 	h1,h2,h3, h4{
 		font-family: 'Wendy One', sans-serif;
