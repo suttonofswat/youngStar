@@ -14,7 +14,7 @@ module.exports = React.createClass({
 			);
 		}
 		return (
-			<div className="col-md-6 col-md-offset-3 box-shadow--8dp formBlock">		
+			<div className="col-xs-6 col-sm-8 col-sm-offset-2 box-shadow--8dp formBlock">		
 					<form onSubmit={this.onLogin} className="form-horizontal">
 						<div className="form-group">
 							<label htmlFor="inputEmail3" className="col-sm-2 control-label">Username:</label>

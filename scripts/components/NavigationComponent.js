@@ -37,10 +37,16 @@ module.exports = React.createClass({
 		}
 		else {
 
+
 	//mapping over students, the push to Links get first name
 				this.state.allStudents.map((a) => {
 					BtnLinks.push(
-						<li className="boardLinks" key={a.id}><a href={'#pointBoard/'+a.id}>{a.get('firstName')}s Board</a></li>
+						<span>
+						<h3 className="kBoard hidden-xs">Kids Boards:</h3>
+						<li className="boardLinks" key={a.id}><a href={'#pointBoard/'+a.id}>{a.get('firstName')}s Board</a>
+						</li>
+						</span>
+
 						);
 
 				})
@@ -79,7 +85,6 @@ module.exports = React.createClass({
 					<div className="navbar subnav hidden-xs" role="navigation">
 						<div className="navbar-inner">
 							<div className="container"> 
-								<h3 className="kBoard">Kids Boards:</h3>
 								<ul className="kLinks"> 
 										<h4>{BtnLinks}</h4>
 								</ul>	
@@ -97,11 +102,11 @@ module.exports = React.createClass({
 	},
 	createNavLink: function(url, label) {
 		var currentUrl = Backbone.history.getFragment();
-		if(currentUrl === url){
+		if(currentUrl === 'url'){
 			return (<li key={url} className="active"><a href={'#'+url}>{label}</a></li>);
 		}
 		else{
-			return(<li key={url}><a href={'#'+url}>{label}</a></li>);
+			return(<li key={url} className="greyBtn"><a href={'#'+url}>{label}</a></li>);
 		}
 	},
 	fetchStudents: function(){

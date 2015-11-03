@@ -34212,60 +34212,99 @@ module.exports = React.createClass({
 			);
 		});
 		//checking to make sure the student and subject has loaded.
-		// if(!this.state.student || !this.state.subject){
-		// 	return(
-		// 			<div>
-		// 				Loading..
-		// 			</div>
-		// 		)
-		// }else{
-		// 	//getting the sum of all of the grade points, then getting the average grade for that subject.
-
-		// 	var myArray = [];
-		// 	this.state.subject.forEach(function(index) {
-		// 		myArray.push(index.get('assignmentPoints'));
-		// 	})
-		// 	var totalNumbers = 0
-		// 	myArray.length > 0 ? totalNumbers = myArray.reduce(function(a,b) {return a + b;}) : '';
-		// 	var averageNum = totalNumbers/myArray.length;
-
-		// 	var avgGrade='';
-		// 	if(averageNum === -10 ){
-		// 		avgGrade='F';
-		// 		console.log(avgGrade);
-		// 	}else if(averageNum === -5){
-		// 		avgGrade='D';
-		// 		console.log(avgGrade);
-		// 	}else if(averageNum === 0){
-		// 		avgGrade='C';
-		// 		console.log(avgGrade);
-		// 	}else if(averageNum === 5){
-		// 		avgGrade='B';
-		// 		console.log(avgGrade);
-		// 	}else if(averageNum > 6){
-		// 		avgGrade='A';
-		// 		console.log(avgGrade);
-		// 	}
-		return React.createElement(
-			'div',
-			null,
-			React.createElement(
-				'h1',
-				null,
-				this.state.student.get('firstName'),
-				's ',
-				this.props.subject,
-				' Assignments'
-			),
-			React.createElement(LetterGradeBoxComponent, { studentId: this.state.student.id, subject: this.props.subject }),
-			React.createElement(
+		if (!this.state.student || !this.state.subject) {
+			return React.createElement(
 				'div',
 				null,
-				'Total Points to date: ',
-				totalNumbers
-			),
-			subjectAssignment
-		);
+				'Loading..'
+			);
+		} else {
+			//getting the sum of all of the grade points, then getting the average grade for that subject.
+
+			var myArray = [];
+			this.state.subject.forEach(function (index) {
+				myArray.push(index.get('assignmentPoints'));
+			});
+			var totalNumbers = 0;
+			myArray.length > 0 ? totalNumbers = myArray.reduce(function (a, b) {
+				return a + b;
+			}) : '';
+			var averageNum = totalNumbers / myArray.length;
+
+			var avgGrade = '';
+			if (averageNum === -10) {
+				avgGrade = 'F';
+				console.log(avgGrade);
+			} else if (averageNum === -5) {
+				avgGrade = 'D';
+				console.log(avgGrade);
+			} else if (averageNum === 0) {
+				avgGrade = 'C';
+				console.log(avgGrade);
+			} else if (averageNum === 5) {
+				avgGrade = 'B';
+				console.log(avgGrade);
+			} else if (averageNum > 6) {
+				avgGrade = 'A';
+				console.log(avgGrade);
+			}
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h1',
+					null,
+					this.state.student.get('firstName'),
+					's ',
+					this.props.subject,
+					' Assignments'
+				),
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement(LetterGradeBoxComponent, { studentId: this.state.student.id, subject: this.props.subject })
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement(
+								'div',
+								{ className: 'avgGradeBox' },
+								React.createElement(
+									'div',
+									{ className: 'gradeTxt' },
+									'Total Points to date: '
+								),
+								React.createElement(
+									'div',
+									{ className: 'grade' },
+									totalNumbers
+								)
+							)
+						)
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-8' },
+							subjectAssignment
+						)
+					)
+				)
+			);
+		}
 	}
 });
 
@@ -34581,7 +34620,7 @@ module.exports = React.createClass({
 		}
 		return React.createElement(
 			'div',
-			{ className: 'col-md-6 col-md-offset-3 box-shadow--8dp formBlock' },
+			{ className: 'col-xs-6 col-sm-8 col-sm-offset-2 box-shadow--8dp formBlock' },
 			React.createElement(
 				'form',
 				{ onSubmit: this.onLogin, className: 'form-horizontal' },
@@ -34693,13 +34732,22 @@ module.exports = React.createClass({
 			//mapping over students, the push to Links get first name
 			this.state.allStudents.map(function (a) {
 				BtnLinks.push(React.createElement(
-					'li',
-					{ className: 'boardLinks', key: a.id },
+					'span',
+					null,
 					React.createElement(
-						'a',
-						{ href: '#pointBoard/' + a.id },
-						a.get('firstName'),
-						's Board'
+						'h3',
+						{ className: 'kBoard hidden-xs' },
+						'Kids Boards:'
+					),
+					React.createElement(
+						'li',
+						{ className: 'boardLinks', key: a.id },
+						React.createElement(
+							'a',
+							{ href: '#pointBoard/' + a.id },
+							a.get('firstName'),
+							's Board'
+						)
 					)
 				));
 			});
@@ -34771,11 +34819,6 @@ module.exports = React.createClass({
 						'div',
 						{ className: 'container' },
 						React.createElement(
-							'h3',
-							{ className: 'kBoard' },
-							'Kids Boards:'
-						),
-						React.createElement(
 							'ul',
 							{ className: 'kLinks' },
 							React.createElement(
@@ -34797,7 +34840,7 @@ module.exports = React.createClass({
 	},
 	createNavLink: function createNavLink(url, label) {
 		var currentUrl = Backbone.history.getFragment();
-		if (currentUrl === url) {
+		if (currentUrl === 'url') {
 			return React.createElement(
 				'li',
 				{ key: url, className: 'active' },
@@ -34810,7 +34853,7 @@ module.exports = React.createClass({
 		} else {
 			return React.createElement(
 				'li',
-				{ key: url },
+				{ key: url, className: 'greyBtn' },
 				React.createElement(
 					'a',
 					{ href: '#' + url },
@@ -34985,7 +35028,8 @@ module.exports = React.createClass({
 								'p',
 								null,
 								'Cost: ',
-								this.props.points
+								this.props.points,
+								' points'
 							)
 						),
 						React.createElement(

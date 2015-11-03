@@ -38,6 +38,9 @@ body{
 	h5{
 		font-size: 20px;
 	}
+	h1{
+		margin-left: 2.8em;
+	}
 
 }
 
@@ -48,6 +51,26 @@ body{
 	margin-top: 0;
 	margin-bottom: 0;
 	}
+}
+.formBlock{
+	padding: 3em;
+}
+
+.form-control{
+	margin-bottom: 1em;
+}
+		
+		
+#dropdown{
+	margin-right: 0;
+	margin-left: 0;
+	margin-bottom: 0;
+}
+.modal-content{
+		padding: 3em;
+}
+textarea{
+	width: 100%;
 }
 nav{
 
@@ -181,6 +204,11 @@ nav{
 }
 
 @media screen and (min-width:768px){
+	body{
+		h1{
+			margin-left:1.1em;
+		}
+	}
 	nav{
 		.navbar {
 			margin-bottom: 0;
@@ -247,6 +275,12 @@ nav{
 		.mainNavLinks{
 			position: absolute;
 			right: 30px;
+			margin-top: .5em;
+			.greyBtn{
+				display: inline;
+				margin-right: .5em;
+
+			}
 
 		}
 		.greyBtn{
@@ -261,20 +295,7 @@ nav{
 
 		}
 		
-		.formBlock{
-			padding: 3em;
-		}
-
-		.form-control{
-			margin-bottom: 1em;
-		}
 		
-		
-		#dropdown{
-			margin-right: 0;
-			margin-left: 0;
-			margin-bottom: 0;
-		}
 		.kHead{
 			padding-top:1.7em;
 		}
@@ -291,12 +312,7 @@ nav{
 			margin-top: 20px;
 			}
 		}
-		.modal-content{
-			padding: 3em;
-		}
-		textarea{
-			width: 100%;
-		}
+		
 
 }	
 

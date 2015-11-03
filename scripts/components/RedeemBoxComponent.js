@@ -11,7 +11,7 @@ module.exports = React.createClass({
 						<div className="row">
 							<div className="col-xs-8 col-sm-2">
 								<h5>{this.props.prize}</h5>
-								<p>Cost: {this.props.points}</p>
+								<p>Cost: {this.props.points} points</p>
 							</div>
 							<div className="col-xs-4 col-sm-2">
 								<button id="orangeBtn" className="btn btn-primary btn-small" onClick={this.onRedeem}>REDEEM</button>
