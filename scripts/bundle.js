@@ -34133,7 +34133,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":186,"backbone":1,"react":173,"react-dom":18}],175:[function(require,module,exports){
+},{"../models/StudentModel":187,"backbone":1,"react":173,"react-dom":18}],175:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34143,6 +34143,10 @@ var _ = require('backbone/node_modules/underscore');
 var AssignmentModel = require('../models/AssignmentModel');
 var StudentModel = require('../models/StudentModel');
 var LetterGradeBoxComponent = require('./LetterGradeBoxComponent');
+var ListDetailsComponent = require('./ListDetailsComponent');
+window.$ = require('jquery');
+window.jQuery = $;
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -34175,42 +34179,9 @@ module.exports = React.createClass({
 	render: function render() {
 		//mapping through the subject to return the detailed information about that students subject
 		var subjectAssignment = this.state.subject.map(function (assignment) {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement('hr', null),
-				React.createElement(
-					'h5',
-					null,
-					assignment.get('assignmentName')
-				),
-				React.createElement(
-					'div',
-					null,
-					assignment.get('createdAt').toDateString()
-				),
-				React.createElement(
-					'div',
-					null,
-					assignment.get('assignmentGrade')
-				),
-				React.createElement(
-					'div',
-					null,
-					assignment.get('assignmentPoints')
-				),
-				React.createElement(
-					'div',
-					null,
-					assignment.get('assignmentType')
-				),
-				React.createElement(
-					'div',
-					null,
-					assignment.get('assignmentNotes')
-				)
-			);
+			return React.createElement(ListDetailsComponent, { assignment: assignment });
 		});
+
 		//checking to make sure the student and subject has loaded.
 		if (!this.state.student || !this.state.subject) {
 			return React.createElement(
@@ -34306,9 +34277,10 @@ module.exports = React.createClass({
 			);
 		}
 	}
+
 });
 
-},{"../models/AssignmentModel":185,"../models/StudentModel":186,"./LetterGradeBoxComponent":178,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],176:[function(require,module,exports){
+},{"../models/AssignmentModel":186,"../models/StudentModel":187,"./LetterGradeBoxComponent":178,"./ListDetailsComponent":179,"backbone":1,"backbone/node_modules/underscore":2,"jquery":17,"react":173,"react-dom":18}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34436,6 +34408,7 @@ module.exports = React.createClass({
 		e.preventDefault();
 		var gradePts = 0;
 		if (this.refs.grade.value.toUpperCase() === 'A') {
+
 			gradePts = parseFloat(10);
 			console.log(gradePts);
 		} else if (this.refs.grade.value.toUpperCase() === 'B') {
@@ -34467,7 +34440,7 @@ module.exports = React.createClass({
 		newAssignment.save();
 
 		$(this.refs.classBox).modal('hide');
-		this.props.dispatcher.trigger('assignmentSubmit');
+		this.props.dispatcher.trigger('assignmentSubmit', gradePts);
 		//having the points also saved to the student model's total points
 		var totalPoints = this.props.student.get('points') + gradePts;
 		this.props.student.save({ points: totalPoints });
@@ -34475,7 +34448,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":185,"../models/StudentModel":186,"./LetterGradeBoxComponent":178,"backbone":1,"bootstrap":3,"react":173,"react-dom":18}],177:[function(require,module,exports){
+},{"../models/AssignmentModel":186,"../models/StudentModel":187,"./LetterGradeBoxComponent":178,"backbone":1,"bootstrap":3,"react":173,"react-dom":18}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34500,7 +34473,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":186,"backbone":1,"react":173,"react-dom":18}],178:[function(require,module,exports){
+},{"../models/StudentModel":187,"backbone":1,"react":173,"react-dom":18}],178:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34560,19 +34533,20 @@ module.exports = React.createClass({
 			var averageNum = totalNumbers / myArray.length;
 
 			var avgGrade = '';
-			if (averageNum === -10) {
+			console.log(averageNum);
+			if (averageNum <= -5) {
 				avgGrade = 'F';
 				console.log(avgGrade);
-			} else if (averageNum === -5) {
+			} else if (averageNum < 0 && averageNum > -5) {
 				avgGrade = 'D';
 				console.log(avgGrade);
-			} else if (averageNum === 0) {
+			} else if (averageNum >= 0 && averageNum < 5) {
 				avgGrade = 'C';
 				console.log(avgGrade);
-			} else if (averageNum === 5) {
+			} else if (averageNum >= 5 && averageNum < 10) {
 				avgGrade = 'B';
 				console.log(avgGrade);
-			} else if (averageNum > 6) {
+			} else if (averageNum >= 10) {
 				avgGrade = 'A';
 				console.log(avgGrade);
 			}
@@ -34596,7 +34570,151 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/AssignmentModel":185,"../models/StudentModel":186,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],179:[function(require,module,exports){
+},{"../models/AssignmentModel":186,"../models/StudentModel":187,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],179:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+var _ = require('backbone/node_modules/underscore');
+var AssignmentModel = require('../models/AssignmentModel');
+var divStyle = {
+	textAlign: 'right'
+};
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'assignmentDetails' },
+			React.createElement(
+				'div',
+				{ className: 'container' },
+				React.createElement(
+					'div',
+					{ className: 'header row' },
+					React.createElement(
+						'div',
+						{ className: 'col-xs-6 col-sm-8' },
+						React.createElement(
+							'h3',
+							null,
+							this.props.assignment.get('assignmentName')
+						)
+					),
+					React.createElement(
+						'div',
+						{ style: divStyle, className: 'col-sm-2 col-sm-offset-2' },
+						React.createElement(
+							'button',
+							{ id: 'orangeBtn', className: 'detailsBtn btn btn-primary btn-small', onClick: this.onToggle },
+							React.createElement(
+								'span',
+								{ className: 'plus' },
+								'+'
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'toggle', id: this.props.assignment.id },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							React.createElement(
+								'div',
+								{ className: 'detailsHead' },
+								'Grade: '
+							),
+							React.createElement(
+								'div',
+								{ className: 'detailsTxt' },
+								this.props.assignment.get('assignmentGrade')
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							React.createElement(
+								'div',
+								{ className: 'detailsHead' },
+								'Points: '
+							),
+							React.createElement(
+								'div',
+								{ className: 'detailsTxt' },
+								this.props.assignment.get('assignmentPoints')
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							React.createElement(
+								'div',
+								{ className: 'detailsHead' },
+								'Date: '
+							),
+							React.createElement(
+								'div',
+								{ className: 'detailsTxt' },
+								this.props.assignment.get('createdAt').toDateString()
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							React.createElement(
+								'div',
+								{ className: 'detailsHead' },
+								'Category: '
+							),
+							React.createElement(
+								'div',
+								{ className: 'detailsTxt' },
+								this.props.assignment.get('assignmentType')
+							)
+						)
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'detailsNotesBox' },
+						React.createElement(
+							'div',
+							{ className: 'detailsNotes' },
+							' Notes: '
+						),
+						React.createElement(
+							'span',
+							null,
+							this.props.assignment.get('assignmentNotes')
+						)
+					)
+				)
+			)
+		);
+	},
+	onToggle: function onToggle() {
+		console.log(this.props.assignment);
+		$('#' + this.props.assignment.id).toggle('slow');
+	}
+
+});
+
+},{"../models/AssignmentModel":186,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34689,7 +34807,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":173,"react-dom":18}],180:[function(require,module,exports){
+},{"backbone":1,"react":173,"react-dom":18}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34875,7 +34993,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":186,"backbone":1,"react":173,"react-dom":18}],181:[function(require,module,exports){
+},{"../models/StudentModel":187,"backbone":1,"react":173,"react-dom":18}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -34900,9 +35018,7 @@ module.exports = React.createClass({
 		//once new grade is added, dispatcher will update the grade automatically without a refresh
 		this.dispatcher = {};
 		_.extend(this.dispatcher, Backbone.Events);
-		this.dispatcher.on('assignmentSubmit', function () {
-			_this.forceUpdate();
-		});
+		this.dispatcher.on('assignmentSubmit', this.onAssignmentSubmit);
 		this.props.router.on('route', function () {
 			_this.fetchBoard();
 		});
@@ -34943,7 +35059,7 @@ module.exports = React.createClass({
 							{ className: 'currentPts col-sm-4' },
 							React.createElement(
 								'h2',
-								null,
+								{ ref: 'currentPts' },
 								'Current Points: ',
 								this.state.student.get('points')
 							)
@@ -34989,11 +35105,22 @@ module.exports = React.createClass({
 		}, function (err) {
 			console.log(err);
 		});
+	},
+	onAssignmentSubmit: function onAssignmentSubmit(gradePts) {
+		var _this3 = this;
+
+		this.forceUpdate(function () {
+			if (gradePts === 10) {
+				$(_this3.refs.currentPts).animate({ fontSize: '5em' }, 200);
+			} else {
+				console.log('not an A');
+			}
+		});
 	}
 
 });
 
-},{"../models/StudentModel":186,"./ClassBoxComponent":176,"./RedeemBoxComponent":182,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],182:[function(require,module,exports){
+},{"../models/StudentModel":187,"./ClassBoxComponent":176,"./RedeemBoxComponent":183,"backbone":1,"backbone/node_modules/underscore":2,"react":173,"react-dom":18}],183:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35055,7 +35182,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":173,"react-dom":18}],183:[function(require,module,exports){
+},{"backbone":1,"react":173,"react-dom":18}],184:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -35165,7 +35292,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"backbone":1,"react":173,"react-dom":18}],184:[function(require,module,exports){
+},{"backbone":1,"react":173,"react-dom":18}],185:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -35223,21 +35350,21 @@ Backbone.history.start();
 
 ReactDOM.render(React.createElement(NavigationComponent, { router: r }), document.getElementById('nav'));
 
-},{"./components/AddChildComponent":174,"./components/AssignmentDetailComponent":175,"./components/HomeComponent":177,"./components/LoginComponent":179,"./components/NavigationComponent":180,"./components/PointBoardComponent":181,"./components/RegisterComponent":183,"backbone":1,"bootstrap":3,"jquery":17,"react":173,"react-dom":18}],185:[function(require,module,exports){
+},{"./components/AddChildComponent":174,"./components/AssignmentDetailComponent":175,"./components/HomeComponent":177,"./components/LoginComponent":180,"./components/NavigationComponent":181,"./components/PointBoardComponent":182,"./components/RegisterComponent":184,"backbone":1,"bootstrap":3,"jquery":17,"react":173,"react-dom":18}],186:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'AssignmentModel'
 });
 
-},{}],186:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'StudentModel'
 });
 
-},{}]},{},[184])
+},{}]},{},[185])
 
 
 //# sourceMappingURL=bundle.js.map

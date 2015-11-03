@@ -5,6 +5,10 @@ var _ = require('backbone/node_modules/underscore');
 var AssignmentModel = require('../models/AssignmentModel');
 var StudentModel = require('../models/StudentModel');
 var LetterGradeBoxComponent = require('./LetterGradeBoxComponent');
+var ListDetailsComponent = require('./ListDetailsComponent');
+window.$ = require('jquery');
+window.jQuery = $;
+
 module.exports = React.createClass({
 	getInitialState: function(){
 		return{
@@ -45,17 +49,10 @@ module.exports = React.createClass({
     	var subjectAssignment = this.state.subject
 		.map(function(assignment) {
 			return(
-				<div>
-					<hr />
-					<h5>{assignment.get('assignmentName')}</h5>
-					<div>{assignment.get('createdAt').toDateString()}</div>
-					<div>{assignment.get('assignmentGrade')}</div>
-					<div>{assignment.get('assignmentPoints')}</div>
-					<div>{assignment.get('assignmentType')}</div>
-					<div>{assignment.get('assignmentNotes')}</div>
-				</div>
-			);
+				<ListDetailsComponent assignment={assignment}/>
+			)
 		});
+		
 		//checking to make sure the student and subject has loaded.
 		if(!this.state.student || !this.state.subject){
 			return(
@@ -110,7 +107,7 @@ module.exports = React.createClass({
 		         <div className="container">
 		         	<div className="row">
 		         		<div className="col-sm-8">
-            			{subjectAssignment}
+		         		{subjectAssignment}
             			</div>
             		</div>
             	</div>
@@ -119,5 +116,6 @@ module.exports = React.createClass({
 		}
         
     }
+    
 });
 

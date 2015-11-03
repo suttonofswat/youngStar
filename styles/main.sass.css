@@ -17,6 +17,9 @@
 .box-shadow--16dp {
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); }
 
+.toggle {
+  display: none; }
+
 body {
   margin: 0; }
   body h1, body h2, body h3, body h4 {
@@ -151,6 +154,31 @@ nav .navbar-inner {
   padding: .5em; }
   .viewAllAssign a {
     color: #555; }
+
+.assignmentDetails .header {
+  background-color: #00C0B9;
+  margin-bottom: 1em;
+  border-radius: 0.2em;
+  border: 1px solid #015456;
+  color: #fff; }
+
+.assignmentDetails .detailsHead {
+  text-align: center;
+  font-size: 1.7em; }
+
+.assignmentDetails .detailsTxt {
+  color: #47BBB6;
+  font-size: 1.4em;
+  text-align: center; }
+
+.assignmentDetails .detailsNotes {
+  font-size: 1.7em; }
+
+.assignmentDetails .detailsNotesBox {
+  border: 1px solid #015456;
+  padding: 2em;
+  margin: 1em 0;
+  border-radius: 0.2em; }
 
 @media screen and (min-width: 768px) {
   body h1 {

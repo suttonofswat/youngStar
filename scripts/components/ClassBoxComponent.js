@@ -62,6 +62,7 @@ module.exports = React.createClass({
 		e.preventDefault();
 		var gradePts = 0;
 		if(this.refs.grade.value.toUpperCase() === 'A'){
+
 			gradePts = parseFloat(10);
 			console.log(gradePts)
 		}else if(this.refs.grade.value.toUpperCase() === 'B'){
@@ -93,7 +94,7 @@ module.exports = React.createClass({
 		newAssignment.save();
 
 		$(this.refs.classBox).modal('hide');
-		this.props.dispatcher.trigger('assignmentSubmit');
+		this.props.dispatcher.trigger('assignmentSubmit', gradePts);
 	//having the points also saved to the student model's total points
 		var totalPoints = this.props.student.get('points') + gradePts;
 		this.props.student.save({points: totalPoints});

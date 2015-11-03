@@ -16,9 +16,7 @@ module.exports = React.createClass({
 	//once new grade is added, dispatcher will update the grade automatically without a refresh
 		this.dispatcher = {};
    		_.extend(this.dispatcher, Backbone.Events);
-		this.dispatcher.on('assignmentSubmit', () => {
-      	this.forceUpdate();
-   	 });
+		this.dispatcher.on('assignmentSubmit', this.onAssignmentSubmit)
 		this.props.router.on('route', () => {
 			this.fetchBoard();
 		});
@@ -40,7 +38,7 @@ module.exports = React.createClass({
 					<div className="container">
 						<div className="row">
 							<span className="kHead col-sm-8"><h2>{this.state.student.get('firstName')}s Star Board</h2></span>
-							<span className="currentPts col-sm-4"><h2>Current Points: {this.state.student.get('points')}</h2></span>
+							<span className="currentPts col-sm-4"><h2 ref="currentPts">Current Points: {this.state.student.get('points')}</h2></span>
 						</div>					
 					</div>
 					<hr />
@@ -78,6 +76,17 @@ module.exports = React.createClass({
 					console.log(err);
 				}
 			)
+	},
+	onAssignmentSubmit: function(gradePts){
+		this.forceUpdate(() => {
+			if(gradePts === 10){
+				$(this.refs.currentPts).animate({fontSize: '5em'}, 200)
+			}else{
+				console.log('not an A');
+			}
+
+		});
+
 	}
 	
 })

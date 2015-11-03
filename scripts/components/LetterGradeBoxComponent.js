@@ -59,19 +59,20 @@ module.exports = React.createClass({
 			var averageNum = totalNumbers/myArray.length;
 
 			var avgGrade='';
-			if(averageNum === -10 ){
+			console.log(averageNum);
+			if(averageNum <= -5){
 				avgGrade='F';
 				console.log(avgGrade);
-			}else if(averageNum === -5){
+			}else if(averageNum < 0 && averageNum > -5){
 				avgGrade='D';
 				console.log(avgGrade);
-			}else if(averageNum === 0){
+			}else if(averageNum >= 0 && averageNum < 5){
 				avgGrade='C';
 				console.log(avgGrade);
-			}else if(averageNum === 5){
+			}else if(averageNum >= 5 && averageNum < 10){
 				avgGrade='B';
 				console.log(avgGrade);
-			}else if(averageNum > 6){
+			}else if(averageNum >= 10){
 				avgGrade='A';
 				console.log(avgGrade);
 			}
