@@ -49450,13 +49450,14 @@ module.exports = React.createClass({
 		this.props.dispatcher.trigger('assignmentSubmit', gradePts);
 
 		$(this.refs.addAssignmentButton).effect('transfer', { to: '#totalPoints', className: 'ui-effects-transfer' }, 1200);
+
 		if (gradePts > 0) {
 			setTimeout(function () {
-				$('#totalPoints').animate({ fontSize: '3em', color: '#FDAA1D' });
+				$('#totalPoints').animate({ fontSize: '3em', color: '#FCDB02' });
 			}, 1000);
 		} else {
 			setTimeout(function () {
-				$('#totalPoints').animate({ fontSize: '1em', color: '#660000' });
+				$('#totalPoints').animate({ fontSize: '.75em', color: '#660000' });
 			}, 1000);
 		}
 
@@ -50041,7 +50042,9 @@ module.exports = React.createClass({
 		//once new grade is added, dispatcher will update the grade automatically without a refresh
 		this.dispatcher = {};
 		_.extend(this.dispatcher, Backbone.Events);
-		this.dispatcher.on('assignmentSubmit', this.onAssignmentSubmit);
+		this.dispatcher.on('assignmentSubmit', function () {
+			_this.forceUpdate();
+		});
 		this.props.router.on('route', function () {
 			_this.fetchBoard();
 		});

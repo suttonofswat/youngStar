@@ -16,7 +16,9 @@ module.exports = React.createClass({
 	//once new grade is added, dispatcher will update the grade automatically without a refresh
 		this.dispatcher = {};
    		_.extend(this.dispatcher, Backbone.Events);
-		this.dispatcher.on('assignmentSubmit', this.onAssignmentSubmit)
+		this.dispatcher.on('assignmentSubmit', () => {
+      	this.forceUpdate();
+   	 });
 		this.props.router.on('route', () => {
 			this.fetchBoard();
 		});
@@ -81,4 +83,3 @@ module.exports = React.createClass({
 	}
 	
 });
-

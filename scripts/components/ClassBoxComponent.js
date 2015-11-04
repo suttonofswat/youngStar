@@ -97,22 +97,20 @@ module.exports = React.createClass({
 		this.props.dispatcher.trigger('assignmentSubmit', gradePts);
 		
 		$(this.refs.addAssignmentButton).effect('transfer', {to: '#totalPoints', className: 'ui-effects-transfer'}, 1200)
+		
 		if(gradePts > 0){
 			setTimeout(function(){
-	  			$('#totalPoints').animate({fontSize: '3em', color: '#FDAA1D'})
+	  			$('#totalPoints').animate({fontSize: '3em', color: '#FCDB02'})
 			}, 1000);
 		}else{
 			setTimeout(function(){
-	  			$('#totalPoints').animate({fontSize: '1em', color: '#660000'})
+	  			$('#totalPoints').animate({fontSize: '.75em', color: '#660000'})
 			}, 1000);
 		}
 
 		setTimeout(function(){
   			$('#totalPoints').animate({fontSize: '30px', color: '#000'})
 		}, 1700);
-
-			
-		
 
 	//having the points also saved to the student model's total points
 		var totalPoints = this.props.student.get('points') + gradePts;
