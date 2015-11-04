@@ -11,6 +11,7 @@ var app = document.getElementById('app');
 var NavigationComponent = require('./components/NavigationComponent');
 var LoginComponent = require('./components/LoginComponent');
 var HomeComponent = require('./components/HomeComponent');
+var FooterComponent = require('./components/FooterComponent');
 var RegisterComponent = require('./components/RegisterComponent');
 // var StudentModel = require('./models/StudentModel');
 var AddChildComponent = require('./components/AddChildComponent');
@@ -72,5 +73,9 @@ ReactDOM.render(
 	document.getElementById('nav')
 );
 
+ReactDOM.render(
+	<FooterComponent router={r} />,
+	document.getElementById('footer')
+);
 
 

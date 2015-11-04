@@ -36,10 +36,19 @@ module.exports = React.createClass({
 				<div ref="redeemed" className="modal fade bs-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div className="modal-dialog modal-lg">
 									<div className="modal-content">
-										<h1 className="blueHeader">Great Job {this.props.student.get('firstName')}!</h1>
-										<div className="redeemSub">For all of your hard work you have earned</div>
-										<h3 className="redeemSub">{this.props.prize}</h3>
-										<h4 className="redeemSub">Keep up the great work!</h4>
+										<button className="closeModal" onClick={this.onModalClose}>x</button>
+										<div className="rating">
+											<span className="star"></span>
+											<span className="star"></span>
+											<span className="star"></span>
+											<span className="star"></span>
+											<span className="star"></span>
+										</div>
+										<h1 className="blueHeader">Great Job, {this.props.student.get('firstName')}!</h1>
+										<div className="redeemSub top">For all of your hard work you have earned:</div>
+										<h2 className="redeemSub">{this.props.prize}</h2>
+										<div className="redeemSub">Keep up the great work!</div>
+										
 									</div>
 								</div>
 				</div>
@@ -51,12 +60,10 @@ module.exports = React.createClass({
 		var totalPoints = this.props.student.get('points') - this.props.points;
 		this.props.student.save({points: totalPoints});
 		this.props.dispatcher.trigger('assignmentSubmit');
-			
-		
 
-		
-
-
+	},
+	onModalClose: function(){
+		$(this.refs.redeemed).modal('hide');
 	}
 	
 })

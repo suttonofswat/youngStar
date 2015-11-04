@@ -25,6 +25,7 @@ module.exports = React.createClass({
 			query
 			.equalTo('child', targetStudentModel)
 			.equalTo('subjectName', this.props.subject)
+			.descending('createdAt')
 			.find().then(
 				(subject) => {
 					var newQuery = new Parse.Query(StudentModel);

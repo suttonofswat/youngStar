@@ -14,7 +14,7 @@ module.exports = React.createClass({
 			<div className="col-sm-6">
 				<div className="subBox">
 						<div className="row">
-								<div className="col-sm-8">
+								<div className="col-xs-10 col-sm-8">
 								<h3 className="subjectTitle">{this.props.subject}</h3>
 								</div>
 								<div className="col-sm-2">
@@ -24,12 +24,14 @@ module.exports = React.createClass({
 							<div ref="classBox" className="modal fade bs-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel">
 								<div className="modal-dialog modal-lg">
 									<div className="modal-content">
+										<button className="closeModal" onClick={this.onModalClose}>x</button>
 										<form className="form-horizontal" onSubmit={this.onAddAssignment}>
 											<h3>Add New {this.props.subject} Grade</h3>
 											<input type="text" ref="assignmentName" className="form-control" placeholder="Assignment Name" />
 											<div className="form-group" id="dropdown">
 	  												<select ref="assignmentType" className="form-control">
 														<option disabled selected>Assignment Type</option>
+														<option>Classwork</option>
 														<option>Homework</option>
 														<option>Project</option>
 														<option>Test</option>
@@ -37,7 +39,7 @@ module.exports = React.createClass({
 											</div>
 											<input type="text" ref="grade" className="form-control" placeholder="Grade" />
 											<textarea className="form-control" ref="notes" rows="3" placeholder="Notes"></textarea>
-											<button ref="addAssignmentButton">Add Assignment</button>
+											<button className="orangeBtn" ref="addAssignmentButton">Add Assignment</button>
 										</form>
 									</div>
 								</div>
@@ -55,6 +57,9 @@ module.exports = React.createClass({
 		$(this.refs.classBox).modal('show');
 		this.refs.grade.value = '';
 		
+	},
+	onModalClose: function(){
+		$(this.refs.classBox).modal('hide');
 	},
 	onAddAssignment: function(e){
 	//creating points based on the grade given
