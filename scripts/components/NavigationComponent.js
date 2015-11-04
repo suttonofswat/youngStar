@@ -20,7 +20,6 @@ module.exports = React.createClass({
 
 		this.props.router.on('login', () => {
 			this.fetchStudents();
-			console.log('test')
 			
 		});
 			

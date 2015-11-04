@@ -49417,19 +49417,14 @@ module.exports = React.createClass({
 		if (this.refs.grade.value.toUpperCase() === 'A') {
 
 			gradePts = parseFloat(10);
-			console.log(gradePts);
 		} else if (this.refs.grade.value.toUpperCase() === 'B') {
 			gradePts = parseFloat(5);
-			console.log(gradePts);
 		} else if (this.refs.grade.value.toUpperCase() === 'D') {
 			gradePts = parseFloat(-5);
-			console.log(gradePts);
 		} else if (this.refs.grade.value.toUpperCase() === 'C') {
 			gradePts = parseFloat(0);
-			console.log(gradePts);
 		} else if (this.refs.grade.value.toUpperCase() === 'F') {
 			gradePts = parseFloat(-10);
-			console.log(gradePts);
 		} else {
 			console.log('please enter in a grade a-f');
 		}
@@ -49557,22 +49552,17 @@ module.exports = React.createClass({
 			var averageNum = totalNumbers / myArray.length;
 
 			var avgGrade = '';
-			console.log(averageNum);
+
 			if (averageNum <= -5) {
 				avgGrade = 'F';
-				console.log(avgGrade);
 			} else if (averageNum < 0 && averageNum > -5) {
 				avgGrade = 'D';
-				console.log(avgGrade);
 			} else if (averageNum >= 0 && averageNum < 5) {
 				avgGrade = 'C';
-				console.log(avgGrade);
 			} else if (averageNum >= 5 && averageNum < 10) {
 				avgGrade = 'B';
-				console.log(avgGrade);
 			} else if (averageNum >= 10) {
 				avgGrade = 'A';
-				console.log(avgGrade);
 			}
 			return React.createElement(
 				'div',
@@ -49858,7 +49848,6 @@ module.exports = React.createClass({
 
 		this.props.router.on('login', function () {
 			_this.fetchStudents();
-			console.log('test');
 		});
 	},
 	render: function render() {
@@ -50126,7 +50115,6 @@ module.exports = React.createClass({
 		//setting the state for the student
 		var query = new Parse.Query(StudentModel);
 		query.get(this.props.studentId).then(function (student) {
-			console.log('got student', student);
 			_this2.setState({ student: student });
 		}, function (err) {
 			console.log(err);
@@ -50145,42 +50133,58 @@ var Backbone = require('backbone');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		this.props.dispatcher.on('assignmentSubmit', function () {
+			_this.forceUpdate();
+		});
+	},
+	componentWillUnmount: function componentWillUnmount() {},
 	render: function render() {
+		var disabledClass = '';
+		if (this.props.points > this.props.student.get('points')) {
+			disabledClass = 'disabled';
+		}
 		return React.createElement(
 			'div',
-			{ className: 'redeemBox' },
+			{ id: 'redeemed', className: disabledClass },
 			React.createElement(
 				'div',
-				{ className: 'thumbnail' },
+				{ className: 'redeemBox' },
 				React.createElement(
 					'div',
-					{ className: 'container' },
+					{ className: 'thumbnail' },
 					React.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: 'container' },
 						React.createElement(
 							'div',
-							{ className: 'col-xs-8 col-sm-2' },
+							{ className: 'row' },
 							React.createElement(
-								'h5',
-								null,
-								this.props.prize
+								'div',
+								{ className: 'col-xs-8 col-sm-2' },
+								React.createElement(
+									'h5',
+									null,
+									this.props.prize
+								),
+								React.createElement(
+									'p',
+									null,
+									'Cost: ',
+									this.props.points,
+									' points'
+								)
 							),
 							React.createElement(
-								'p',
-								null,
-								'Cost: ',
-								this.props.points,
-								' points'
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: 'col-xs-4 col-sm-2' },
-							React.createElement(
-								'button',
-								{ id: 'orangeBtn', className: 'btn btn-primary btn-small', onClick: this.onRedeem },
-								'REDEEM'
+								'div',
+								{ className: 'col-xs-4 col-sm-2' },
+								React.createElement(
+									'button',
+									{ ref: 'redeemButton', id: 'orangeBtn', className: 'btn btn-primary btn-small', onClick: this.onRedeem },
+									'REDEEM'
+								)
 							)
 						)
 					)

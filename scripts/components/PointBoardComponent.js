@@ -71,7 +71,6 @@ module.exports = React.createClass({
 		var query = new Parse.Query(StudentModel);
 			query.get(this.props.studentId).then(
 				(student) => {
-					console.log('got student', student);
 					this.setState({student: student});
 				},
 				(err) => {
@@ -81,5 +80,7 @@ module.exports = React.createClass({
 	
 
 	}
+
+	
 	
 });

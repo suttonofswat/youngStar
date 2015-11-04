@@ -64,19 +64,19 @@ module.exports = React.createClass({
 		if(this.refs.grade.value.toUpperCase() === 'A'){
 
 			gradePts = parseFloat(10);
-			console.log(gradePts)
+		
 		}else if(this.refs.grade.value.toUpperCase() === 'B'){
 			gradePts = parseFloat(5);
-			console.log(gradePts)
+			
 		}else if(this.refs.grade.value.toUpperCase() === 'D'){
 			gradePts = parseFloat(-5);
-			console.log(gradePts);
+			
 		}else if(this.refs.grade.value.toUpperCase() === 'C'){
 			gradePts = parseFloat(0);
-			console.log(gradePts);
+		
 		}else if(this.refs.grade.value.toUpperCase() === 'F'){
 			gradePts = parseFloat(-10);
-			console.log(gradePts);
+			
 		}else{
 			console.log('please enter in a grade a-f');
 		}
