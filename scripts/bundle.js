@@ -49444,15 +49444,15 @@ module.exports = React.createClass({
 		$(this.refs.classBox).modal('hide');
 		this.props.dispatcher.trigger('assignmentSubmit', gradePts);
 
-		$(this.refs.addAssignmentButton).effect('transfer', { to: '#totalPoints', className: 'ui-effects-transfer' }, 1200);
-
 		if (gradePts > 0) {
+			$(this.refs.addAssignmentButton).effect('transfer', { to: '#totalPoints', className: 'ui-effects-transfer' }, 1200);
 			setTimeout(function () {
 				$('#totalPoints').animate({ fontSize: '3em', color: '#FCDB02' });
 			}, 1000);
 		} else {
+			$(this.refs.addAssignmentButton).effect('transfer', { to: '#totalPoints', className: 'fireBall-effects-transfer' }, 1200);
 			setTimeout(function () {
-				$('#totalPoints').animate({ fontSize: '.75em', color: '#660000' });
+				$('#totalPoints').animate({ fontSize: '1em', color: '#660000' });
 			}, 1000);
 		}
 
@@ -50099,10 +50099,10 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'col-sm-4', id: 'redeemHolder' },
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'Afternoon Activity' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'Favorite Dinner' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'Movie Night' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'Yogurt Trip' })
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'an Afternoon Activity' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'Your Favorite Dinner' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'Movie Night of Your Choice' }),
+							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'a Yogurt Trip' })
 						)
 					)
 				)
@@ -50140,7 +50140,6 @@ module.exports = React.createClass({
 			_this.forceUpdate();
 		});
 	},
-	componentWillUnmount: function componentWillUnmount() {},
 	render: function render() {
 		var disabledClass = '';
 		if (this.props.points > this.props.student.get('points')) {
@@ -50148,44 +50147,82 @@ module.exports = React.createClass({
 		}
 		return React.createElement(
 			'div',
-			{ id: 'redeemed', className: disabledClass },
+			null,
 			React.createElement(
 				'div',
-				{ className: 'redeemBox' },
+				{ id: 'redeemed', className: disabledClass },
 				React.createElement(
 					'div',
-					{ className: 'thumbnail' },
+					{ className: 'redeemBox' },
 					React.createElement(
 						'div',
-						{ className: 'container' },
+						{ className: 'thumbnail' },
 						React.createElement(
 							'div',
-							{ className: 'row' },
+							{ className: 'container' },
 							React.createElement(
 								'div',
-								{ className: 'col-xs-8 col-sm-2' },
+								{ className: 'row' },
 								React.createElement(
-									'h5',
-									null,
-									this.props.prize
+									'div',
+									{ className: 'col-xs-8 col-sm-2' },
+									React.createElement(
+										'h5',
+										null,
+										this.props.prize
+									),
+									React.createElement(
+										'p',
+										null,
+										'Cost: ',
+										this.props.points,
+										' points'
+									)
 								),
 								React.createElement(
-									'p',
-									null,
-									'Cost: ',
-									this.props.points,
-									' points'
-								)
-							),
-							React.createElement(
-								'div',
-								{ className: 'col-xs-4 col-sm-2' },
-								React.createElement(
-									'button',
-									{ ref: 'redeemButton', id: 'orangeBtn', className: 'btn btn-primary btn-small', onClick: this.onRedeem },
-									'REDEEM'
+									'div',
+									{ className: 'col-xs-4 col-sm-2' },
+									React.createElement(
+										'button',
+										{ ref: 'redeemButton', id: 'orangeBtn', className: 'btn btn-primary btn-small', onClick: this.onRedeem },
+										'REDEEM'
+									)
 								)
 							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'div',
+				{ ref: 'redeemed', className: 'modal fade bs-example-modal-lg', role: 'dialog', 'aria-labelledby': 'myLargeModalLabel' },
+				React.createElement(
+					'div',
+					{ className: 'modal-dialog modal-lg' },
+					React.createElement(
+						'div',
+						{ className: 'modal-content' },
+						React.createElement(
+							'h1',
+							{ className: 'blueHeader' },
+							'Great Job ',
+							this.props.student.get('firstName'),
+							'!'
+						),
+						React.createElement(
+							'div',
+							{ className: 'redeemSub' },
+							'For all of your hard work you have earned'
+						),
+						React.createElement(
+							'h3',
+							{ className: 'redeemSub' },
+							this.props.prize
+						),
+						React.createElement(
+							'h4',
+							{ className: 'redeemSub' },
+							'Keep up the great work!'
 						)
 					)
 				)
@@ -50193,7 +50230,7 @@ module.exports = React.createClass({
 		);
 	},
 	onRedeem: function onRedeem() {
-		// console.log(this.props.student.get('points'));
+		$(this.refs.redeemed).modal('show');
 		var totalPoints = this.props.student.get('points') - this.props.points;
 		this.props.student.save({ points: totalPoints });
 		this.props.dispatcher.trigger('assignmentSubmit');

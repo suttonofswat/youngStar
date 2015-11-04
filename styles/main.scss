@@ -1,4 +1,8 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@-ms-viewport{
+  width: device-width;
+}
+
 $navColor: #008D9F;
 $button-color: #FB6124;
 $greyBtn: #E7E9EB;
@@ -8,7 +12,7 @@ $darkOrange: #CC4A1D;
 $borderRadius: .2em;
 $darkTeal: #015456;
 $teal: #00C0B9;
- .box-shadow--2dp {
+.box-shadow--2dp {
  	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
 .box-shadow--3dp {
@@ -29,8 +33,24 @@ $teal: #00C0B9;
 .toggle{
 	display:none;
 }
+.blueHeader{
+	text-align:center;
+	background-color: $teal;
+	color: #fff;
+	padding: 1em;
+	border-radius: $borderRadius;
+}
+.redeemSub{
+	text-align: center;
+}
 .ui-effects-transfer{
 	background-image: url("../images/yellow-star-md.png");
+	background-size:contain;
+	background-repeat: no-repeat;
+	z-index: 1060;
+}
+.fireBall-effects-transfer{
+	background-image: url("../images/fireBall.png");
 	background-size:contain;
 	background-repeat: no-repeat;
 	z-index: 1060;
