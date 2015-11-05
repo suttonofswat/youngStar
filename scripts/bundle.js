@@ -49083,6 +49083,8 @@ module.exports = require('./lib/React');
 },{"./lib/React":43}],175:[function(require,module,exports){
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
@@ -49091,7 +49093,34 @@ var StudentModel = require('../models/StudentModel');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		return {
+			subjects: [],
+			rewardsObj: {},
+			both: []
+
+		};
+	},
 	render: function render() {
+		var subjectsRows = this.state.subjects.map(function (subject) {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'div',
+					null,
+					subject
+				)
+			);
+		});
+		var rewardRows = this.state.both.map(function (reward, index) {
+			return React.createElement(
+				'div',
+				{ key: "rewards" + index },
+				reward.rewards + ": " + reward.points
+			);
+		});
+
 		return React.createElement(
 			'div',
 			null,
@@ -49101,11 +49130,11 @@ module.exports = React.createClass({
 				'Add a youngStar'
 			),
 			React.createElement(
-				'form',
-				{ onSubmit: this.onAddChild },
+				'div',
+				{ className: 'container' },
 				React.createElement(
 					'div',
-					{ className: 'form-group' },
+					{ className: 'row' },
 					React.createElement(
 						'label',
 						{ className: 'col-sm-2 control-label' },
@@ -49114,17 +49143,91 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'col-sm-10' },
-						React.createElement('input', { type: 'text', ref: 'firstName', className: 'form-control', id: 'inputEmail3' })
+						React.createElement('input', { type: 'text', ref: 'firstName', className: 'form-control' })
 					)
-				),
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'container' },
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(
+						'label',
+						{ className: 'col-sm-2 control-label' },
+						'Classes:'
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-sm-8' },
+						React.createElement('input', { type: 'text', ref: 'subject', className: 'form-control' })
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-sm-2' },
+						React.createElement(
+							'button',
+							{ onClick: this.onAddSubject },
+							'+'
+						)
+					),
+					React.createElement(
+						'div',
+						null,
+						subjectsRows
+					)
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'container' },
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(
+						'label',
+						{ className: 'col-sm-2 control-label' },
+						'Rewards:'
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-sm-4' },
+						React.createElement('input', { type: 'text', ref: 'reward', className: 'form-control' })
+					),
+					React.createElement(
+						'label',
+						{ className: 'col-sm-2 control-label' },
+						'Point Value:'
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-sm-2' },
+						React.createElement('input', { type: 'text', ref: 'points', className: 'form-control' })
+					),
+					React.createElement(
+						'div',
+						{ className: 'col-sm-2' },
+						React.createElement(
+							'button',
+							{ onClick: this.onAddReward },
+							'+'
+						)
+					)
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'container' },
 				React.createElement(
 					'div',
 					{ className: 'row' },
 					React.createElement(
 						'button',
-						null,
+						{ onClick: this.onAddChild },
 						'Add youngStar'
-					)
+					),
+					rewardRows
 				)
 			)
 		);
@@ -49133,9 +49236,28 @@ module.exports = React.createClass({
 		var newChild = new StudentModel({
 			firstName: this.refs.firstName.value,
 			parent: Parse.User.current(),
-			points: 0
+			points: 0,
+			subjects: this.state.subjects,
+			rewards: this.state.both
 		});
 		newChild.save();
+		this.refs.firstName.value = '';
+	},
+	onAddSubject: function onAddSubject() {
+		var newSubject = this.refs.subject.value;
+		var currentSubjects = this.state.subjects;
+		currentSubjects.push(newSubject);
+		this.setState({ subjects: currentSubjects }), this.refs.subject.value = '';
+	},
+	onAddReward: function onAddReward() {
+		var rewardsObj = {};
+		var rewardsArray = [].concat(_toConsumableArray(this.state.both));
+		var newReward = this.refs.reward.value;
+		var newPoints = this.refs.points.value;
+		rewardsObj.rewards = newReward;
+		rewardsObj.points = newPoints;
+		rewardsArray.push(rewardsObj);
+		this.setState({ both: rewardsArray });
 	}
 
 });
@@ -50073,6 +50195,8 @@ module.exports = React.createClass({
 },{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],184:[function(require,module,exports){
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
@@ -50104,6 +50228,8 @@ module.exports = React.createClass({
 		this.fetchBoard();
 	},
 	render: function render() {
+		var _this2 = this;
+
 		//checking to make sure the student and subject has loaded.
 		if (!this.state.student) {
 			return React.createElement(
@@ -50112,8 +50238,18 @@ module.exports = React.createClass({
 				'Loading..'
 			);
 		} else {
+			var subjectRows = this.state.student.get('subjects').map(function (subject) {
+				return React.createElement(ClassBoxComponent, { dispatcher: _this2.dispatcher, student: _this2.state.student, subject: subject });
+			});
+
 			//passing through information about the student and subject to the classboxcomponent.
-			console.log(this.state.student);
+			var points = [].concat(_toConsumableArray(this.state.student.get('rewards')));
+			points.sort(function (a, b) {
+				return a.points > b.points;
+			});
+			var prizeRows = points.map(function (prize) {
+				return React.createElement(RedeemBoxComponent, { dispatcher: _this2.dispatcher, student: _this2.state.student, points: prize.points, prize: prize.rewards });
+			});
 			return React.createElement(
 				'div',
 				null,
@@ -50155,18 +50291,12 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'col-sm-8', id: 'subjectBoxes' },
-							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Math' }),
-							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Science' }),
-							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Reading' }),
-							React.createElement(ClassBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, subject: 'Social Studies' })
+							subjectRows
 						),
 						React.createElement(
 							'div',
 							{ className: 'col-sm-4', id: 'redeemHolder' },
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '40', prize: 'Afternoon Activity' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '60', prize: 'Your Favorite Dinner' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '80', prize: 'Movie Night of Your Choice' }),
-							React.createElement(RedeemBoxComponent, { dispatcher: this.dispatcher, student: this.state.student, points: '100', prize: 'Yogurt Trip' })
+							prizeRows
 						)
 					)
 				)
@@ -50174,12 +50304,12 @@ module.exports = React.createClass({
 		}
 	},
 	fetchBoard: function fetchBoard() {
-		var _this2 = this;
+		var _this3 = this;
 
 		//setting the state for the student
 		var query = new Parse.Query(StudentModel);
 		query.get(this.props.studentId).then(function (student) {
-			_this2.setState({ student: student });
+			_this3.setState({ student: student });
 		}, function (err) {
 			console.log(err);
 		});
