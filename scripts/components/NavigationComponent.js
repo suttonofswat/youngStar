@@ -13,6 +13,9 @@ module.exports = React.createClass({
 	},
 	//on load, fetching the students from parse and forcing the nav to update with that info.
 	componentWillMount: function() {
+		this.props.navDispatcher.on('onAddChild', () => {
+      		this.fetchStudents();
+   		 });
 		this.fetchStudents();
 		this.props.router.on('route', () => {
 			this.forceUpdate();
@@ -51,6 +54,7 @@ module.exports = React.createClass({
 				})
 			
 					Links.push(<li className="greyBtn" key={'logout'}><a href='#' onClick={this.onLogout}>LOGOUT</a></li>);
+					Links.push(<li className="orangeNav" key={'dashboard'}><a href='#dashboard'>DASHBOARD</a></li>);
 				}
 
 		return (

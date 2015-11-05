@@ -15,24 +15,25 @@ module.exports = React.createClass({
 	render: function(){
 		var subjectsRows = this.state.subjects.map(function(subject){
 			return(
-				<div>
-					<div>{subject}</div>
+				<div key={subject.id} className="col-sm-offset-4">
+						{subject}
 				</div>
 			)
 		});
 		var rewardRows = this.state.both.map(function(reward, index){
 			return(
-				<div key={"rewards"+index}>{reward.rewards+": "+reward.points}</div>
+				<div className="col-sm-offset-4" key={"rewards"+index}>{reward.rewards+": "+reward.points}</div>
 			)
 		});
 		
 		return (
 			<div>
-				<h3>Add a youngStar</h3>
+				<h1>Add a youngStar</h1>
+					<div className="formBlock">
 						<div className="container">
 							<div className="row">
-								<label className="col-sm-2 control-label">Childs First Name:</label>
-								<div className="col-sm-10">
+								<label className="col-sm-2 control-label">First Name:</label>
+								<div className="col-sm-8">
 									<input type="text" ref="firstName" className="form-control" />
 								</div>
 							</div>
@@ -44,13 +45,13 @@ module.exports = React.createClass({
 									<input type="text" ref="subject" className="form-control" />
 								</div>
 								<div className="col-sm-2">
-									<button onClick={this.onAddSubject}>+</button>
-								</div>
-								<div>
-									{subjectsRows}
+									<button className="orangeBtn" onClick={this.onAddSubject}>+</button>
 								</div>
 							</div>
 						</div>
+						
+						{subjectsRows}	
+							
 			
 						<div className="container">
 							<div className="row">
@@ -63,16 +64,19 @@ module.exports = React.createClass({
 									<input type="text" ref="points" className="form-control" />
 								</div>
 								<div className="col-sm-2">
-									<button onClick={this.onAddReward}>+</button>
+									<button className="orangeBtn" onClick={this.onAddReward}>+</button>
 								</div>
 							</div>
 						</div>
+						
+						{rewardRows}
+							
 						<div className="container">
 							<div className="row">
-								<button onClick={this.onAddChild}>Add youngStar</button>
-								{rewardRows}
+								<button className="orangeBtn add" onClick={this.onAddChild}>Add youngStar</button>
 							</div>
 						</div>
+				</div>
 			</div>
 		);
 	},
@@ -86,6 +90,11 @@ module.exports = React.createClass({
 		})
 		newChild.save();
 		this.refs.firstName.value = ''; 
+		this.refs.subject.value = ''; 
+		this.refs.reward.value = ''; 
+		this.refs.points.value = ''; 
+		this.props.navDispatcher.trigger('onAddChild');
+		this.props.router.navigate('#dashboard', {trigger: true});
 
 	},
 	onAddSubject: function(){
@@ -105,6 +114,9 @@ module.exports = React.createClass({
 		rewardsObj.points = newPoints;
 		rewardsArray.push(rewardsObj);
 		this.setState({both: rewardsArray});
+
+		this.refs.reward.value = ''; 
+		this.refs.points.value = ''; 
 	}
 
 	

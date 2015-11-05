@@ -49105,18 +49105,14 @@ module.exports = React.createClass({
 		var subjectsRows = this.state.subjects.map(function (subject) {
 			return React.createElement(
 				'div',
-				null,
-				React.createElement(
-					'div',
-					null,
-					subject
-				)
+				{ key: subject.id, className: 'col-sm-offset-4' },
+				subject
 			);
 		});
 		var rewardRows = this.state.both.map(function (reward, index) {
 			return React.createElement(
 				'div',
-				{ key: "rewards" + index },
+				{ className: 'col-sm-offset-4', key: "rewards" + index },
 				reward.rewards + ": " + reward.points
 			);
 		});
@@ -49125,109 +49121,109 @@ module.exports = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h3',
+				'h1',
 				null,
 				'Add a youngStar'
 			),
 			React.createElement(
 				'div',
-				{ className: 'container' },
+				{ className: 'formBlock' },
 				React.createElement(
 					'div',
-					{ className: 'row' },
-					React.createElement(
-						'label',
-						{ className: 'col-sm-2 control-label' },
-						'Childs First Name:'
-					),
+					{ className: 'container' },
 					React.createElement(
 						'div',
-						{ className: 'col-sm-10' },
-						React.createElement('input', { type: 'text', ref: 'firstName', className: 'form-control' })
-					)
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'container' },
-				React.createElement(
-					'div',
-					{ className: 'row' },
-					React.createElement(
-						'label',
-						{ className: 'col-sm-2 control-label' },
-						'Classes:'
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-8' },
-						React.createElement('input', { type: 'text', ref: 'subject', className: 'form-control' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-2' },
+						{ className: 'row' },
 						React.createElement(
-							'button',
-							{ onClick: this.onAddSubject },
-							'+'
-						)
-					),
-					React.createElement(
-						'div',
-						null,
-						subjectsRows
-					)
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'container' },
-				React.createElement(
-					'div',
-					{ className: 'row' },
-					React.createElement(
-						'label',
-						{ className: 'col-sm-2 control-label' },
-						'Rewards:'
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-4' },
-						React.createElement('input', { type: 'text', ref: 'reward', className: 'form-control' })
-					),
-					React.createElement(
-						'label',
-						{ className: 'col-sm-2 control-label' },
-						'Point Value:'
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-2' },
-						React.createElement('input', { type: 'text', ref: 'points', className: 'form-control' })
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-2' },
+							'label',
+							{ className: 'col-sm-2 control-label' },
+							'First Name:'
+						),
 						React.createElement(
-							'button',
-							{ onClick: this.onAddReward },
-							'+'
+							'div',
+							{ className: 'col-sm-8' },
+							React.createElement('input', { type: 'text', ref: 'firstName', className: 'form-control' })
 						)
 					)
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'container' },
+				),
 				React.createElement(
 					'div',
-					{ className: 'row' },
+					{ className: 'container' },
 					React.createElement(
-						'button',
-						{ onClick: this.onAddChild },
-						'Add youngStar'
-					),
-					rewardRows
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'label',
+							{ className: 'col-sm-2 control-label' },
+							'Classes:'
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-8' },
+							React.createElement('input', { type: 'text', ref: 'subject', className: 'form-control' })
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-2' },
+							React.createElement(
+								'button',
+								{ className: 'orangeBtn', onClick: this.onAddSubject },
+								'+'
+							)
+						)
+					)
+				),
+				subjectsRows,
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'label',
+							{ className: 'col-sm-2 control-label' },
+							'Rewards:'
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement('input', { type: 'text', ref: 'reward', className: 'form-control' })
+						),
+						React.createElement(
+							'label',
+							{ className: 'col-sm-2 control-label' },
+							'Point Value:'
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-2' },
+							React.createElement('input', { type: 'text', ref: 'points', className: 'form-control' })
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-2' },
+							React.createElement(
+								'button',
+								{ className: 'orangeBtn', onClick: this.onAddReward },
+								'+'
+							)
+						)
+					)
+				),
+				rewardRows,
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'button',
+							{ className: 'orangeBtn add', onClick: this.onAddChild },
+							'Add youngStar'
+						)
+					)
 				)
 			)
 		);
@@ -49242,6 +49238,11 @@ module.exports = React.createClass({
 		});
 		newChild.save();
 		this.refs.firstName.value = '';
+		this.refs.subject.value = '';
+		this.refs.reward.value = '';
+		this.refs.points.value = '';
+		this.props.navDispatcher.trigger('onAddChild');
+		this.props.router.navigate('#dashboard', { trigger: true });
 	},
 	onAddSubject: function onAddSubject() {
 		var newSubject = this.refs.subject.value;
@@ -49258,11 +49259,14 @@ module.exports = React.createClass({
 		rewardsObj.points = newPoints;
 		rewardsArray.push(rewardsObj);
 		this.setState({ both: rewardsArray });
+
+		this.refs.reward.value = '';
+		this.refs.points.value = '';
 	}
 
 });
 
-},{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],176:[function(require,module,exports){
+},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49409,7 +49413,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":188,"../models/StudentModel":189,"./LetterGradeBoxComponent":180,"./ListDetailsComponent":181,"backbone":1,"backbone/node_modules/underscore":2,"jquery":18,"react":174,"react-dom":19}],177:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"../models/StudentModel":191,"./LetterGradeBoxComponent":181,"./ListDetailsComponent":182,"backbone":1,"backbone/node_modules/underscore":2,"jquery":18,"react":174,"react-dom":19}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49516,7 +49520,7 @@ module.exports = React.createClass({
 								React.createElement('textarea', { className: 'form-control', ref: 'notes', rows: '3', placeholder: 'Notes' }),
 								React.createElement(
 									'button',
-									{ className: 'orangeBtn', ref: 'addAssignmentButton' },
+									{ className: 'orangeBtn add', ref: 'addAssignmentButton' },
 									'Add Assignment'
 								)
 							)
@@ -49602,7 +49606,80 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":188,"../models/StudentModel":189,"./LetterGradeBoxComponent":180,"backbone":1,"bootstrap":3,"react":174,"react-dom":19}],178:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"../models/StudentModel":191,"./LetterGradeBoxComponent":181,"backbone":1,"bootstrap":3,"react":174,"react-dom":19}],178:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+var _ = require('backbone/node_modules/underscore');
+var StudentModel = require('../models/StudentModel');
+var StudentBoxComponent = require('./StudentBoxComponent');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			allStudents: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		//setting the child and subject to the state.
+		var query = new Parse.Query(StudentModel);
+		query.equalTo('parent', Parse.User.current());
+		query.find().then(function (students) {
+			_this.setState({ allStudents: students });
+		});
+	},
+	render: function render() {
+		console.log(this.state.allStudents);
+		if (!this.state.allStudents) {
+			return React.createElement(
+				'div',
+				null,
+				'Loading..'
+			);
+		} else {
+			var kidBoards = this.state.allStudents.map(function (child) {
+				return React.createElement(StudentBoxComponent, { child: child });
+			});
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'div',
+					null,
+					React.createElement(
+						'h1',
+						null,
+						'View Boards:'
+					),
+					React.createElement('hr', null),
+					kidBoards
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-sm-10' },
+					React.createElement(
+						'button',
+						{ className: 'viewAllAssign new' },
+						React.createElement(
+							'a',
+							{ href: '#addChild' },
+							'+Add a youngStar'
+						)
+					)
+				)
+			);
+		}
+	}
+
+});
+
+},{"../models/StudentModel":191,"./StudentBoxComponent":188,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],179:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49653,7 +49730,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],179:[function(require,module,exports){
+},{"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49678,7 +49755,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],180:[function(require,module,exports){
+},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49770,7 +49847,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/AssignmentModel":188,"../models/StudentModel":189,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],181:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"../models/StudentModel":191,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49914,7 +49991,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":188,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],182:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],183:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50007,7 +50084,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":174,"react-dom":19}],183:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],184:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50027,6 +50104,9 @@ module.exports = React.createClass({
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
+		this.props.navDispatcher.on('onAddChild', function () {
+			_this.fetchStudents();
+		});
 		this.fetchStudents();
 		this.props.router.on('route', function () {
 			_this.forceUpdate();
@@ -50076,6 +50156,15 @@ module.exports = React.createClass({
 					'a',
 					{ href: '#', onClick: this.onLogout },
 					'LOGOUT'
+				)
+			));
+			Links.push(React.createElement(
+				'li',
+				{ className: 'orangeNav', key: 'dashboard' },
+				React.createElement(
+					'a',
+					{ href: '#dashboard' },
+					'DASHBOARD'
 				)
 			));
 		}
@@ -50192,7 +50281,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],184:[function(require,module,exports){
+},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],185:[function(require,module,exports){
 'use strict';
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
@@ -50317,7 +50406,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"./ClassBoxComponent":177,"./RedeemBoxComponent":185,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],185:[function(require,module,exports){
+},{"../models/StudentModel":191,"./ClassBoxComponent":177,"./RedeemBoxComponent":186,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],186:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50449,7 +50538,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":174,"react-dom":19}],186:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],187:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50559,11 +50648,59 @@ module.exports = React.createClass({
 	}
 });
 
-},{"backbone":1,"react":174,"react-dom":19}],187:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],188:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+require('bootstrap');
+var StudentModel = require('../models/StudentModel');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'dashboardPg col-sm-4' },
+			React.createElement(
+				'div',
+				{ className: 'subBox' },
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(
+						'div',
+						{ className: 'col-xs-10 col-sm-2' },
+						React.createElement(
+							'h3',
+							{ className: 'subjectTitle' },
+							this.props.child.get('firstName')
+						)
+					)
+				),
+				React.createElement(
+					'button',
+					{ className: 'orangeBtn dash' },
+					React.createElement(
+						'a',
+						{ href: '#pointBoard/' + this.props.child.id },
+						'VIEW BOARD'
+					)
+				)
+			)
+		);
+	}
+
+});
+
+},{"../models/StudentModel":191,"backbone":1,"bootstrap":3,"react":174,"react-dom":19}],189:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
+var _ = require('backbone/node_modules/underscore');
 window.$ = require('jquery');
 window.jQuery = $;
 require('jquery-ui');
@@ -50578,9 +50715,12 @@ var RegisterComponent = require('./components/RegisterComponent');
 // var StudentModel = require('./models/StudentModel');
 var AddChildComponent = require('./components/AddChildComponent');
 var PointBoardComponent = require('./components/PointBoardComponent');
+var DashboardComponent = require('./components/DashboardComponent');
 var AssignmentDetailsComponent = require('./components/AssignmentDetailComponent');
 
 Parse.initialize('s8ymxzLxffDiYnjpMiXv6WMSebgMvt3FFwWoiBNK', 'zI8sNxFoFKso2OgRpwXiviI9qmuP3vu4x9X0vRDG');
+var navDispatcher = {};
+_.extend(navDispatcher, Backbone.Events);
 
 var Router = Backbone.Router.extend({
 	routes: {
@@ -50588,6 +50728,7 @@ var Router = Backbone.Router.extend({
 		'login': 'login',
 		'register': 'register',
 		'addChild': 'addChild',
+		'dashboard': 'dashboard',
 		'pointBoard/:id': 'pointBoard',
 		'assignmentDetails/:id/:subject': 'assignmentDetails'
 	},
@@ -50598,7 +50739,10 @@ var Router = Backbone.Router.extend({
 		ReactDOM.render(React.createElement(RegisterComponent, { router: r }), app);
 	},
 	addChild: function addChild() {
-		ReactDOM.render(React.createElement(AddChildComponent, { router: r }), app);
+		ReactDOM.render(React.createElement(AddChildComponent, { navDispatcher: navDispatcher, router: r }), app);
+	},
+	dashboard: function dashboard() {
+		ReactDOM.render(React.createElement(DashboardComponent, { router: r }), app);
 	},
 	pointBoard: function pointBoard(id) {
 		ReactDOM.render(React.createElement(PointBoardComponent, { studentId: id, router: r }), app);
@@ -50617,25 +50761,25 @@ var Router = Backbone.Router.extend({
 var r = new Router();
 Backbone.history.start();
 
-ReactDOM.render(React.createElement(NavigationComponent, { router: r }), document.getElementById('nav'));
+ReactDOM.render(React.createElement(NavigationComponent, { navDispatcher: navDispatcher, router: r }), document.getElementById('nav'));
 
 ReactDOM.render(React.createElement(FooterComponent, { router: r }), document.getElementById('footer'));
 
-},{"./components/AddChildComponent":175,"./components/AssignmentDetailComponent":176,"./components/FooterComponent":178,"./components/HomeComponent":179,"./components/LoginComponent":182,"./components/NavigationComponent":183,"./components/PointBoardComponent":184,"./components/RegisterComponent":186,"backbone":1,"bootstrap":3,"jquery":18,"jquery-ui":17,"react":174,"react-dom":19}],188:[function(require,module,exports){
+},{"./components/AddChildComponent":175,"./components/AssignmentDetailComponent":176,"./components/DashboardComponent":178,"./components/FooterComponent":179,"./components/HomeComponent":180,"./components/LoginComponent":183,"./components/NavigationComponent":184,"./components/PointBoardComponent":185,"./components/RegisterComponent":187,"backbone":1,"backbone/node_modules/underscore":2,"bootstrap":3,"jquery":18,"jquery-ui":17,"react":174,"react-dom":19}],190:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'AssignmentModel'
 });
 
-},{}],189:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'StudentModel'
 });
 
-},{}]},{},[187])
+},{}]},{},[189])
 
 
 //# sourceMappingURL=bundle.js.map
