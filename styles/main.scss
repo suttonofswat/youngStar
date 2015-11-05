@@ -72,6 +72,9 @@ $teal: #00C0B9;
 	z-index: 1060;
 }
 body{
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 	h1,h2,h3, h4{
 		font-family: 'Wendy One', sans-serif;
 	}
@@ -95,6 +98,7 @@ body{
 }
 
 #app{
+	flex: 1 0 auto;
 	hr{
 	border-top: 2px solid $navColor;
 	margin-top: 0;
@@ -103,7 +107,12 @@ body{
 }
 .formBlock{
 	padding: 3em;
+	margin: 1em;
+	border: 2px solid $darkTeal;
+	border-radius: $borderRadius;
+
 }
+
 
 .form-control{
 	margin-bottom: 1em;
@@ -210,7 +219,6 @@ nav{
 			margin-right: 0;
 		}
 		.subjectTitle{
-			
 			color: #fff;
 			
 		}
@@ -261,10 +269,12 @@ nav{
     border-top: 0 solid $orange;
     border-right: 0 solid $orange;
     border-left: 0 solid $orange;
-    margin-top: 15px;
     margin-left: -10px;
     border-radius: $borderRadius;
-    padding: 1em;
+    	&.add{
+    		padding: 1em;
+    		margin-top: 15px;
+    	}
 }
 .closeModal{
 		float: right;

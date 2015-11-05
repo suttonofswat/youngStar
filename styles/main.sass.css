@@ -71,6 +71,9 @@
   z-index: 1060; }
 
 body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   margin: 0; }
   body h1, body h2, body h3, body h4 {
     font-family: 'Wendy One', sans-serif; }
@@ -87,13 +90,18 @@ body {
   opacity: 0.6;
   pointer-events: none; }
 
-#app hr {
-  border-top: 2px solid #008D9F;
-  margin-top: 0;
-  margin-bottom: 0; }
+#app {
+  flex: 1 0 auto; }
+  #app hr {
+    border-top: 2px solid #008D9F;
+    margin-top: 0;
+    margin-bottom: 0; }
 
 .formBlock {
-  padding: 3em; }
+  padding: 3em;
+  margin: 1em;
+  border: 2px solid #015456;
+  border-radius: 0.2em; }
 
 .form-control {
   margin-bottom: 1em; }
@@ -218,10 +226,11 @@ nav .navbar-inner {
   border-top: 0 solid #F46B32;
   border-right: 0 solid #F46B32;
   border-left: 0 solid #F46B32;
-  margin-top: 15px;
   margin-left: -10px;
-  border-radius: 0.2em;
-  padding: 1em; }
+  border-radius: 0.2em; }
+  .orangeBtn.add {
+    padding: 1em;
+    margin-top: 15px; }
 
 .closeModal {
   float: right;

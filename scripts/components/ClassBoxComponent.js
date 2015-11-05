@@ -39,7 +39,7 @@ module.exports = React.createClass({
 											</div>
 											<input type="text" ref="grade" className="form-control" placeholder="Grade" />
 											<textarea className="form-control" ref="notes" rows="3" placeholder="Notes"></textarea>
-											<button className="orangeBtn" ref="addAssignmentButton">Add Assignment</button>
+											<button className="orangeBtn add" ref="addAssignmentButton">Add Assignment</button>
 										</form>
 									</div>
 								</div>

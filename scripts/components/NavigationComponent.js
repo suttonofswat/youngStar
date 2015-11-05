@@ -13,6 +13,9 @@ module.exports = React.createClass({
 	},
 	//on load, fetching the students from parse and forcing the nav to update with that info.
 	componentWillMount: function() {
+		this.props.navDispatcher.on('onAddChild', () => {
+      		this.fetchStudents();
+   		 });
 		this.fetchStudents();
 		this.props.router.on('route', () => {
 			this.forceUpdate();
