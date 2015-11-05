@@ -49650,11 +49650,29 @@ module.exports = React.createClass({
 				'div',
 				null,
 				React.createElement(
-					'h1',
+					'div',
 					null,
-					'Kids Boards:'
+					React.createElement(
+						'h1',
+						null,
+						'View Boards:'
+					),
+					React.createElement('hr', null),
+					kidBoards
 				),
-				kidBoards
+				React.createElement(
+					'div',
+					{ className: 'col-sm-10' },
+					React.createElement(
+						'button',
+						{ className: 'viewAllAssign new' },
+						React.createElement(
+							'a',
+							{ href: '#addChild' },
+							'+Add a youngStar'
+						)
+					)
+				)
 			);
 		}
 	}
@@ -50138,6 +50156,15 @@ module.exports = React.createClass({
 					'a',
 					{ href: '#', onClick: this.onLogout },
 					'LOGOUT'
+				)
+			));
+			Links.push(React.createElement(
+				'li',
+				{ className: 'orangeNav', key: 'dashboard' },
+				React.createElement(
+					'a',
+					{ href: '#dashboard' },
+					'DASHBOARD'
 				)
 			));
 		}
@@ -50636,16 +50663,32 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			null,
+			{ className: 'dashboardPg col-sm-4' },
 			React.createElement(
-				'h3',
-				null,
-				this.props.child.get('firstName')
-			),
-			React.createElement(
-				'a',
-				{ href: '#pointBoard/' + this.props.child.id },
-				'work!'
+				'div',
+				{ className: 'subBox' },
+				React.createElement(
+					'div',
+					{ className: 'row' },
+					React.createElement(
+						'div',
+						{ className: 'col-xs-10 col-sm-2' },
+						React.createElement(
+							'h3',
+							{ className: 'subjectTitle' },
+							this.props.child.get('firstName')
+						)
+					)
+				),
+				React.createElement(
+					'button',
+					{ className: 'orangeBtn dash' },
+					React.createElement(
+						'a',
+						{ href: '#pointBoard/' + this.props.child.id },
+						'VIEW BOARD'
+					)
+				)
 			)
 		);
 	}

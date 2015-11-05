@@ -90,6 +90,9 @@ body{
 	}
 
 }
+.dashboardPg{
+	margin-top:1em;
+}
 .disabled {
     z-index: 1000;
     background-color: lightgrey;
@@ -257,6 +260,10 @@ nav{
 			a{
 				color: #555;
 			}
+			&.new{
+    		margin: 2em 1em;
+    		padding: 3em;
+    	}
 
 }
 .orangeBtn{
@@ -269,12 +276,20 @@ nav{
     border-top: 0 solid $orange;
     border-right: 0 solid $orange;
     border-left: 0 solid $orange;
-    margin-left: -10px;
     border-radius: $borderRadius;
     	&.add{
     		padding: 1em;
     		margin-top: 15px;
+    		margin-left: -10px;
     	}
+    	a{
+    		color: #fff;
+    	}
+    	&.dash{
+    		margin: 1em;
+    		padding: 1em;
+    	}
+    	
 }
 .closeModal{
 		float: right;
@@ -349,7 +364,6 @@ footer{
 						padding-top: 6px;
 						padding-bottom: 4px;
 	    				a{
-	    					color: #555;
 	    					text-transform: uppercase;
 						    font-size: 0.8em;
 						    font-weight: bold;
@@ -418,11 +432,21 @@ footer{
 				padding: 0 20px;
 				border-radius: $borderRadius;
 				border-bottom: 2px solid #ccc;	
-				color: #555;
-	    		text-transform: uppercase;
-				font-weight: bold;
-				letter-spacing: 1px;
+					a{
+						color: #555!important;
+					}
+	    		
 
+		}
+		.orangeNav{
+			background-color: $orange;
+			padding: 0 20px;
+			border-radius: $borderRadius;
+			border-bottom: 2px solid $darkOrange;
+			display: inline;	
+				a{
+					color: #fff;
+				}
 		}
 		
 		

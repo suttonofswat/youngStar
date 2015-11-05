@@ -40,10 +40,16 @@ module.exports = React.createClass({
 
 				})
 			return (
-            <div>
-            	<h1>Kids Boards:</h1>
-            	{kidBoards}
-            </div>
+			<div>
+	            <div>
+	            	<h1>View Boards:</h1>
+	            	<hr />
+	            	{kidBoards}
+	            </div>
+	            <div className="col-sm-10">
+	            	<button className="viewAllAssign new"><a href={'#addChild'}>+Add a youngStar</a></button>
+	            </div>
+	          </div>
         	);
 		}
         

@@ -8,10 +8,17 @@ module.exports = React.createClass({
 
 	render: function(){
 		return (
-			<div>
-				<h3>{this.props.child.get('firstName')}</h3>
-				<a href={'#pointBoard/'+this.props.child.id}>work!</a>
+			<div className="dashboardPg col-sm-4">
+				<div className="subBox">
+						<div className="row">
+								<div className="col-xs-10 col-sm-2">
+								<h3 className="subjectTitle">{this.props.child.get('firstName')}</h3>
+								</div>
+						</div>
+							<button className="orangeBtn dash"><a href={'#pointBoard/'+this.props.child.id}>VIEW BOARD</a></button>
+				</div>
 			</div>
+
 
 
 		);
