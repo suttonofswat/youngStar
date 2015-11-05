@@ -33,8 +33,23 @@ module.exports = React.createClass({
 					</div>
 				)
 		}else{
+		var subjectRows = this.state.student.get('subjects')
+		.map((subject) => {
+			return(
+				<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject={subject}/>
+			)
+		});
+			
 		//passing through information about the student and subject to the classboxcomponent.
-			console.log(this.state.student);
+			var points = [...this.state.student.get('rewards')];
+				points.sort(function(a,b) {
+					return a.points > b.points;	
+				});
+			var prizeRows = points.map((prize) =>{
+				return(
+						<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points={prize.points} prize={prize.rewards}/>
+				)
+			});
 			return (
 				<div>
 					<div className="container">
@@ -47,16 +62,10 @@ module.exports = React.createClass({
 					<div className="container">
 						<div className="row">
 							<div className="col-sm-8" id="subjectBoxes">
-										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Math"/>
-										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Science"/>
-										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Reading"/>
-										<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject="Social Studies"/>
+								{subjectRows}
 							</div>
 							<div className="col-sm-4" id="redeemHolder">
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="40" prize="Afternoon Activity"/>
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="60" prize="Your Favorite Dinner"/>
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="80" prize="Movie Night of Your Choice"/>
-								<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points="100" prize="Yogurt Trip"/>
+								{prizeRows}
 							</div>
 						</div>
 					</div>
