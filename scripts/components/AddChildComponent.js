@@ -94,6 +94,7 @@ module.exports = React.createClass({
 		this.refs.reward.value = ''; 
 		this.refs.points.value = ''; 
 		this.props.navDispatcher.trigger('onAddChild');
+		this.props.router.navigate('#dashboard', {trigger: true});
 
 	},
 	onAddSubject: function(){

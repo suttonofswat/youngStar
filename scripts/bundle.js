@@ -49242,6 +49242,7 @@ module.exports = React.createClass({
 		this.refs.reward.value = '';
 		this.refs.points.value = '';
 		this.props.navDispatcher.trigger('onAddChild');
+		this.props.router.navigate('#dashboard', { trigger: true });
 	},
 	onAddSubject: function onAddSubject() {
 		var newSubject = this.refs.subject.value;
@@ -49265,7 +49266,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],176:[function(require,module,exports){
+},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],176:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49412,7 +49413,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":188,"../models/StudentModel":189,"./LetterGradeBoxComponent":180,"./ListDetailsComponent":181,"backbone":1,"backbone/node_modules/underscore":2,"jquery":18,"react":174,"react-dom":19}],177:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"../models/StudentModel":191,"./LetterGradeBoxComponent":181,"./ListDetailsComponent":182,"backbone":1,"backbone/node_modules/underscore":2,"jquery":18,"react":174,"react-dom":19}],177:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49605,7 +49606,62 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":188,"../models/StudentModel":189,"./LetterGradeBoxComponent":180,"backbone":1,"bootstrap":3,"react":174,"react-dom":19}],178:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"../models/StudentModel":191,"./LetterGradeBoxComponent":181,"backbone":1,"bootstrap":3,"react":174,"react-dom":19}],178:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+var _ = require('backbone/node_modules/underscore');
+var StudentModel = require('../models/StudentModel');
+var StudentBoxComponent = require('./StudentBoxComponent');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		return {
+			allStudents: []
+		};
+	},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		//setting the child and subject to the state.
+		var query = new Parse.Query(StudentModel);
+		query.equalTo('parent', Parse.User.current());
+		query.find().then(function (students) {
+			_this.setState({ allStudents: students });
+		});
+	},
+	render: function render() {
+		console.log(this.state.allStudents);
+		if (!this.state.allStudents) {
+			return React.createElement(
+				'div',
+				null,
+				'Loading..'
+			);
+		} else {
+			var kidBoards = this.state.allStudents.map(function (child) {
+				return React.createElement(StudentBoxComponent, { child: child });
+			});
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'h1',
+					null,
+					'Kids Boards:'
+				),
+				kidBoards
+			);
+		}
+	}
+
+});
+
+},{"../models/StudentModel":191,"./StudentBoxComponent":188,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],179:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49656,7 +49712,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],179:[function(require,module,exports){
+},{"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49681,7 +49737,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],180:[function(require,module,exports){
+},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49773,7 +49829,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../models/AssignmentModel":188,"../models/StudentModel":189,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],181:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"../models/StudentModel":191,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -49917,7 +49973,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/AssignmentModel":188,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],182:[function(require,module,exports){
+},{"../models/AssignmentModel":190,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],183:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50010,7 +50066,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":174,"react-dom":19}],183:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],184:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50198,7 +50254,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"backbone":1,"react":174,"react-dom":19}],184:[function(require,module,exports){
+},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],185:[function(require,module,exports){
 'use strict';
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
@@ -50323,7 +50379,7 @@ module.exports = React.createClass({
 
 });
 
-},{"../models/StudentModel":189,"./ClassBoxComponent":177,"./RedeemBoxComponent":185,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],185:[function(require,module,exports){
+},{"../models/StudentModel":191,"./ClassBoxComponent":177,"./RedeemBoxComponent":186,"backbone":1,"backbone/node_modules/underscore":2,"react":174,"react-dom":19}],186:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50455,7 +50511,7 @@ module.exports = React.createClass({
 
 });
 
-},{"backbone":1,"react":174,"react-dom":19}],186:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],187:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50565,7 +50621,38 @@ module.exports = React.createClass({
 	}
 });
 
-},{"backbone":1,"react":174,"react-dom":19}],187:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],188:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Backbone = require('backbone');
+require('bootstrap');
+var StudentModel = require('../models/StudentModel');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'h3',
+				null,
+				this.props.child.get('firstName')
+			),
+			React.createElement(
+				'a',
+				{ href: '#pointBoard/' + this.props.child.id },
+				'work!'
+			)
+		);
+	}
+
+});
+
+},{"../models/StudentModel":191,"backbone":1,"bootstrap":3,"react":174,"react-dom":19}],189:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -50585,6 +50672,7 @@ var RegisterComponent = require('./components/RegisterComponent');
 // var StudentModel = require('./models/StudentModel');
 var AddChildComponent = require('./components/AddChildComponent');
 var PointBoardComponent = require('./components/PointBoardComponent');
+var DashboardComponent = require('./components/DashboardComponent');
 var AssignmentDetailsComponent = require('./components/AssignmentDetailComponent');
 
 Parse.initialize('s8ymxzLxffDiYnjpMiXv6WMSebgMvt3FFwWoiBNK', 'zI8sNxFoFKso2OgRpwXiviI9qmuP3vu4x9X0vRDG');
@@ -50597,6 +50685,7 @@ var Router = Backbone.Router.extend({
 		'login': 'login',
 		'register': 'register',
 		'addChild': 'addChild',
+		'dashboard': 'dashboard',
 		'pointBoard/:id': 'pointBoard',
 		'assignmentDetails/:id/:subject': 'assignmentDetails'
 	},
@@ -50608,6 +50697,9 @@ var Router = Backbone.Router.extend({
 	},
 	addChild: function addChild() {
 		ReactDOM.render(React.createElement(AddChildComponent, { navDispatcher: navDispatcher, router: r }), app);
+	},
+	dashboard: function dashboard() {
+		ReactDOM.render(React.createElement(DashboardComponent, { router: r }), app);
 	},
 	pointBoard: function pointBoard(id) {
 		ReactDOM.render(React.createElement(PointBoardComponent, { studentId: id, router: r }), app);
@@ -50630,21 +50722,21 @@ ReactDOM.render(React.createElement(NavigationComponent, { navDispatcher: navDis
 
 ReactDOM.render(React.createElement(FooterComponent, { router: r }), document.getElementById('footer'));
 
-},{"./components/AddChildComponent":175,"./components/AssignmentDetailComponent":176,"./components/FooterComponent":178,"./components/HomeComponent":179,"./components/LoginComponent":182,"./components/NavigationComponent":183,"./components/PointBoardComponent":184,"./components/RegisterComponent":186,"backbone":1,"backbone/node_modules/underscore":2,"bootstrap":3,"jquery":18,"jquery-ui":17,"react":174,"react-dom":19}],188:[function(require,module,exports){
+},{"./components/AddChildComponent":175,"./components/AssignmentDetailComponent":176,"./components/DashboardComponent":178,"./components/FooterComponent":179,"./components/HomeComponent":180,"./components/LoginComponent":183,"./components/NavigationComponent":184,"./components/PointBoardComponent":185,"./components/RegisterComponent":187,"backbone":1,"backbone/node_modules/underscore":2,"bootstrap":3,"jquery":18,"jquery-ui":17,"react":174,"react-dom":19}],190:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'AssignmentModel'
 });
 
-},{}],189:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 'use strict';
 
 module.exports = Parse.Object.extend({
 	className: 'StudentModel'
 });
 
-},{}]},{},[187])
+},{}]},{},[189])
 
 
 //# sourceMappingURL=bundle.js.map

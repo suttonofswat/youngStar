@@ -17,6 +17,7 @@ var RegisterComponent = require('./components/RegisterComponent');
 // var StudentModel = require('./models/StudentModel');
 var AddChildComponent = require('./components/AddChildComponent');
 var PointBoardComponent = require('./components/PointBoardComponent');
+var DashboardComponent = require('./components/DashboardComponent');
 var AssignmentDetailsComponent = require('./components/AssignmentDetailComponent');
 
 
@@ -33,6 +34,7 @@ var Router = Backbone.Router.extend({
 		'login' : 'login',
 		'register': 'register',
 		'addChild': 'addChild',
+		'dashboard': 'dashboard',
 		'pointBoard/:id': 'pointBoard',
 		'assignmentDetails/:id/:subject': 'assignmentDetails'
 	},
@@ -44,6 +46,9 @@ var Router = Backbone.Router.extend({
 	},
 	addChild: function() {
 		ReactDOM.render(<AddChildComponent navDispatcher={navDispatcher} router={r} />, app);
+	},
+	dashboard: function() {
+		ReactDOM.render(<DashboardComponent router={r} />, app);
 	},
 	pointBoard: function(id) {
 		ReactDOM.render(
