@@ -28,6 +28,7 @@ module.exports = React.createClass({
 			
 
 	},
+	
 	render: function(){
 		var currentUser = Parse.User.current();
 		var Links = [];

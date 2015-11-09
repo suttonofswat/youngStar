@@ -345,17 +345,19 @@ nav{
     border-right: 0 solid $orange;
     border-left: 0 solid $orange;
     border-radius: $borderRadius;
+    	&:hover{
+    			text-decoration: none;
+    			color: $darkTeal;
+    	}
     	&.add{
     		padding: 1em;
     		margin-top: 15px;
     		margin-left: -10px;
+    		
     	}
     	a{
     		color: #fff;
-    		&:hover{
-    			text-decoration: none;
-    			color: $darkTeal;
-    		}
+    		
     	}
     	&.dash{
     		margin: 1em;

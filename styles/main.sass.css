@@ -285,15 +285,15 @@ nav .navbar-inner {
   border-right: 0 solid #F46B32;
   border-left: 0 solid #F46B32;
   border-radius: 0.2em; }
+  .orangeBtn:hover {
+    text-decoration: none;
+    color: #015456; }
   .orangeBtn.add {
     padding: 1em;
     margin-top: 15px;
     margin-left: -10px; }
   .orangeBtn a {
     color: #fff; }
-    .orangeBtn a:hover {
-      text-decoration: none;
-      color: #015456; }
   .orangeBtn.dash {
     margin: 1em;
     padding: 1em; }

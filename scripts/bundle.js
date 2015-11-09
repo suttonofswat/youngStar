@@ -49892,36 +49892,6 @@ module.exports = React.createClass({
 			console.log(err);
 		});
 	},
-	// componentWillReceiveProps: function(newProps){
-	// 	console.log('componentWillReceiveProps', newProps);
-	// 	var child = newProps.studentId;
-	// 	var targetStudentModel = new StudentModel({objectId: child});
-
-	// 	var query = new Parse.Query(AssignmentModel);
-	// 		query
-	// 		.equalTo('child', targetStudentModel)
-	// 		.equalTo('subjectName', newProps.subject)
-	// 		.find().then(
-	// 			(subject) => {
-	// 				var newQuery = new Parse.Query(StudentModel);
-	// 					newQuery.get(newProps.studentId).then(
-	// 					(student) => {
-	// 						console.log('finished grabbing data for ', newProps.subject);
-	// 						if(this.isMounted()) {
-	// 							this.setState({student: student, subject: subject});
-	// 						}
-	// 				},
-	// 				(err) => {
-	// 					console.log(err);
-	// 				}
-	// 			)
-	// 			},
-	// 			(err) => {
-	// 				console.log(err);
-	// 			}
-	// 		)
-
-	// },
 
 	render: function render() {
 		//checking to make sure the student and subject has loaded.
@@ -50246,6 +50216,7 @@ module.exports = React.createClass({
 			_this.fetchStudents();
 		});
 	},
+
 	render: function render() {
 		var currentUser = Parse.User.current();
 		var Links = [];
