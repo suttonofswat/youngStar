@@ -12,7 +12,7 @@ module.exports = React.createClass({
 					        <h1>Turning youngsters into youngStars</h1>
 					        <p>Rewarding children for good grades and hard work</p>
 					        <div className="btnMargin">
-					        	<a href='register' className="orangeBtn add">Register Today</a>
+					        	<a href='#register' className="orangeBtn add">Register Today</a>
 					        </div>
 					    </div>
 					    <img src="../images/hill.png" className="hidden-xs hidden-sm img-responsive slider-hill" alt="slider image"></img>
@@ -38,7 +38,6 @@ module.exports = React.createClass({
 										<h2>Teaching Responseability</h2>
 
 										<p>Students will come home with graded assignments and enter them into their point board.</p>
-
 								</div>
 
 							</div>
@@ -68,13 +67,9 @@ module.exports = React.createClass({
 									<p>Once students get to a certain point amount, they can redeem their points for rewards!</p>
 
 								</div>
-
 						</div>
-
 					</div>
-
 				</div>
-
 			</section>
        </div>
  

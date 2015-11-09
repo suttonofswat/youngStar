@@ -49768,7 +49768,7 @@ module.exports = React.createClass({
 							{ className: 'btnMargin' },
 							React.createElement(
 								'a',
-								{ href: 'register', className: 'orangeBtn add' },
+								{ href: '#register', className: 'orangeBtn add' },
 								'Register Today'
 							)
 						)
@@ -49875,6 +49875,7 @@ module.exports = React.createClass({
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
+		console.log('componentWillMount', this.props);
 		//setting the child and subject to the state.
 		var child = this.props.studentId;
 		var targetStudentModel = new StudentModel({ objectId: child });
@@ -50215,6 +50216,7 @@ module.exports = React.createClass({
 			_this.fetchStudents();
 		});
 	},
+
 	render: function render() {
 		var currentUser = Parse.User.current();
 		var Links = [];
@@ -50407,11 +50409,14 @@ module.exports = React.createClass({
 		_.extend(this.dispatcher, Backbone.Events);
 		this.dispatcher.on('assignmentSubmit', function () {
 			_this.forceUpdate();
-		});
+		}, this);
 		this.props.router.on('route', function () {
 			_this.fetchBoard();
-		});
+		}, this);
 		this.fetchBoard();
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		this.dispatcher.off(null, null, this);
 	},
 	render: function render() {
 		var _this2 = this;
@@ -50425,16 +50430,16 @@ module.exports = React.createClass({
 			);
 		} else {
 			var subjectRows = this.state.student.get('subjects').map(function (subject) {
-				return React.createElement(ClassBoxComponent, { dispatcher: _this2.dispatcher, student: _this2.state.student, subject: subject });
+				return React.createElement(ClassBoxComponent, { key: _this2.state.student.id + subject, dispatcher: _this2.dispatcher, student: _this2.state.student, subject: subject });
 			});
 
 			//passing through information about the student and subject to the classboxcomponent.
 			var ptArray = this.state.student.get('rewards');
 			var smallArray = ptArray.sort();
-			console.log(smallArray);
+			// console.log(smallArray);
 
 			var prizeRows = smallArray.map(function (prize) {
-				return React.createElement(RedeemBoxComponent, { dispatcher: _this2.dispatcher, student: _this2.state.student, points: prize.points, prize: prize.rewards });
+				return React.createElement(RedeemBoxComponent, { key: prize.rewards, dispatcher: _this2.dispatcher, student: _this2.state.student, points: prize.points, prize: prize.rewards });
 			});
 
 			return React.createElement(
@@ -50660,63 +50665,72 @@ module.exports = React.createClass({
 		}
 		return React.createElement(
 			'div',
-			{ className: 'col-md-6 col-md-offset-3 box-shadow--8dp formBlock' },
+			null,
 			React.createElement(
-				'form',
-				{ className: 'col s12', onSubmit: this.onRegister },
-				errorElement,
+				'h1',
+				null,
+				'Register'
+			),
+			React.createElement(
+				'div',
+				{ className: 'col-md-6 col-md-offset-3 box-shadow--8dp formBlock' },
 				React.createElement(
-					'div',
-					{ className: 'form-group' },
-					React.createElement(
-						'label',
-						{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
-						'UserName'
-					),
+					'form',
+					{ className: 'col s12', onSubmit: this.onRegister },
+					errorElement,
 					React.createElement(
 						'div',
-						{ className: 'col-sm-10' },
-						React.createElement('input', { type: 'text', ref: 'username', className: 'form-control', id: 'inputEmail3' })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'form-group' },
-					React.createElement(
-						'label',
-						{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
-						'Email'
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-10' },
-						React.createElement('input', { type: 'text', ref: 'email', className: 'form-control', id: 'inputEmail3' })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'form-group' },
-					React.createElement(
-						'label',
-						{ htmlFor: 'inputPassword3', className: 'col-sm-2 control-label' },
-						'Password'
-					),
-					React.createElement(
-						'div',
-						{ className: 'col-sm-10' },
-						React.createElement('input', { type: 'password', ref: 'password', className: 'form-control', id: 'inputPassword3' })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'form-group' },
-					React.createElement(
-						'div',
-						{ className: 'col-sm-offset-2 col-sm-10' },
+						{ className: 'form-group' },
 						React.createElement(
-							'button',
-							{ type: 'submit', className: 'btn btn-default' },
-							'Register'
+							'label',
+							{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
+							'UserName'
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-10' },
+							React.createElement('input', { type: 'text', ref: 'username', className: 'form-control', id: 'inputEmail3' })
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'form-group' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'inputEmail3', className: 'col-sm-2 control-label' },
+							'Email'
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-10' },
+							React.createElement('input', { type: 'text', ref: 'email', className: 'form-control', id: 'inputEmail3' })
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'form-group' },
+						React.createElement(
+							'label',
+							{ htmlFor: 'inputPassword3', className: 'col-sm-2 control-label' },
+							'Password'
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-10' },
+							React.createElement('input', { type: 'password', ref: 'password', className: 'form-control', id: 'inputPassword3' })
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'form-group' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-offset-2 col-sm-10' },
+							React.createElement(
+								'button',
+								{ type: 'submit', className: 'btn btn-default' },
+								'Register'
+							)
 						)
 					)
 				)

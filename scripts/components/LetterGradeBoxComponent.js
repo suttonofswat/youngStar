@@ -12,6 +12,7 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillMount: function(){
+		console.log('componentWillMount', this.props);
 		//setting the child and subject to the state.
 		var child =this.props.studentId;
 		var targetStudentModel = new StudentModel({objectId: child});
@@ -38,7 +39,7 @@ module.exports = React.createClass({
 			)
 		
 	},
-
+	
     render: function() {
 		//checking to make sure the student and subject has loaded.
 		if(!this.state.student || !this.state.subject){

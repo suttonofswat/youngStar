@@ -67,7 +67,7 @@ $teal: #00C0B9;
     bottom: -30px;
 }
 .btnMargin{
-	margin-top:4em;
+	margin: 4em 1em;
 }
  
 
@@ -322,11 +322,16 @@ nav{
         padding:.5em;
 			a{
 				color: #555;
+				&:hover{
+					text-decoration: none;
+					color: $darkTeal;
+				}
 			}
 			&.new{
     		margin: 2em 1em;
     		padding: 3em;
     	}
+
 
 }
 .orangeBtn{
@@ -340,18 +345,25 @@ nav{
     border-right: 0 solid $orange;
     border-left: 0 solid $orange;
     border-radius: $borderRadius;
+    	&:hover{
+    			text-decoration: none;
+    			color: $darkTeal;
+    	}
     	&.add{
     		padding: 1em;
     		margin-top: 15px;
     		margin-left: -10px;
+    		
     	}
     	a{
     		color: #fff;
+    		
     	}
     	&.dash{
     		margin: 1em;
     		padding: 1em;
     	}
+
     	
 }
 .closeModal{
@@ -532,3 +544,6 @@ footer{
 
 }	
 
+@media screen and (min-width:992px){
+
+}
