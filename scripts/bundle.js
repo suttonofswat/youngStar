@@ -49736,7 +49736,6 @@ module.exports = React.createClass({
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
-var StudentModel = require('../models/StudentModel');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -49746,16 +49745,116 @@ module.exports = React.createClass({
 			'div',
 			null,
 			React.createElement(
-				'h1',
-				null,
-				'Home'
+				'section',
+				{ id: 'home-slider' },
+				React.createElement(
+					'div',
+					{ className: 'main-slider' },
+					React.createElement(
+						'div',
+						{ className: 'slide-text' },
+						React.createElement(
+							'h1',
+							null,
+							'Turning youngsters into youngStars'
+						),
+						React.createElement(
+							'p',
+							null,
+							'Rewarding children for good grades and hard work'
+						),
+						React.createElement(
+							'div',
+							{ className: 'btnMargin' },
+							React.createElement(
+								'a',
+								{ href: 'register', className: 'orangeBtn add' },
+								'Register Today'
+							)
+						)
+					),
+					React.createElement('img', { src: '../images/hill.png', className: 'hidden-xs hidden-sm img-responsive slider-hill', alt: 'slider image' }),
+					React.createElement('img', { src: '../images/house.png', className: 'img-responsive slider-house', alt: 'slider image' }),
+					React.createElement('img', { src: '../images/birds1.png', className: 'hidden-xs slider-birds1', alt: 'slider image' }),
+					React.createElement('img', { src: '../images/birds2.png', className: 'slider-birds2', alt: 'slider image' }),
+					React.createElement('img', { src: '../images/sun.png', className: 'hidden-xs slider-sun', alt: 'slider image' })
+				)
+			),
+			React.createElement(
+				'section',
+				{ id: 'services' },
+				React.createElement(
+					'div',
+					{ className: 'container' },
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4 text-center' },
+							React.createElement(
+								'div',
+								{ className: 'single-service' },
+								React.createElement('img', { src: '../images/home-outline.png', alt: '' }),
+								React.createElement(
+									'h2',
+									null,
+									'Teaching Responseability'
+								),
+								React.createElement(
+									'p',
+									null,
+									'Students will come home with graded assignments and enter them into their point board.'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4 text-center' },
+							React.createElement(
+								'div',
+								{ className: 'single-service' },
+								React.createElement('img', { src: '../images/parent-outline.png', alt: '' }),
+								React.createElement(
+									'h2',
+									null,
+									'Earning Good Grades'
+								),
+								React.createElement(
+									'p',
+									null,
+									'Students will get certain points for each grade. As and Bs will grant them positive points towards rewards, while Ds and Fs will give negative points.'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4 text-center padding wow fadeIn', 'data-wow-duration': '1000ms', 'data-wow-delay': '900ms' },
+							React.createElement(
+								'div',
+								{ className: 'single-service' },
+								React.createElement('img', { src: '../images/graduate-outline.png', alt: '' }),
+								React.createElement(
+									'h2',
+									null,
+									'Celebrating with Rewards'
+								),
+								React.createElement(
+									'p',
+									null,
+									'Once students get to a certain point amount, they can redeem their points for rewards!'
+								)
+							)
+						)
+					)
+				)
 			)
 		);
 	}
 
 });
 
-},{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],181:[function(require,module,exports){
+},{"backbone":1,"react":174,"react-dom":19}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -50284,8 +50383,6 @@ module.exports = React.createClass({
 },{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],185:[function(require,module,exports){
 'use strict';
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
@@ -50332,13 +50429,14 @@ module.exports = React.createClass({
 			});
 
 			//passing through information about the student and subject to the classboxcomponent.
-			var points = [].concat(_toConsumableArray(this.state.student.get('rewards')));
-			points.sort(function (a, b) {
-				return a.points > b.points;
-			});
-			var prizeRows = points.map(function (prize) {
+			var ptArray = this.state.student.get('rewards');
+			var smallArray = ptArray.sort();
+			console.log(smallArray);
+
+			var prizeRows = smallArray.map(function (prize) {
 				return React.createElement(RedeemBoxComponent, { dispatcher: _this2.dispatcher, student: _this2.state.student, points: prize.points, prize: prize.rewards });
 			});
+
 			return React.createElement(
 				'div',
 				null,

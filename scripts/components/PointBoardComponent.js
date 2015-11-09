@@ -41,15 +41,16 @@ module.exports = React.createClass({
 		});
 			
 		//passing through information about the student and subject to the classboxcomponent.
-			var points = [...this.state.student.get('rewards')];
-				points.sort(function(a,b) {
-					return a.points > b.points;	
-				});
-			var prizeRows = points.map((prize) =>{
+			var ptArray = this.state.student.get('rewards');
+			var smallArray = ptArray.sort();
+			console.log(smallArray);
+
+			var prizeRows = smallArray.map((prize) =>{
 				return(
 						<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points={prize.points} prize={prize.rewards}/>
 				)
 			});
+
 			return (
 				<div>
 					<div className="container">
