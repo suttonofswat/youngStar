@@ -18,6 +18,69 @@ $borderRadius: .2em;
 $darkTeal: #015456;
 $teal: #00C0B9;
 
+//homepage slider template
+#home-slider {
+    background: url('../images/slider-bg.png') 0 100% repeat-x;
+    position: relative;
+}
+
+#home-slider .main-slider {
+    position: relative;
+    height: 350px;
+ }
+#home-slider .slide-text{
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  width: 450px;
+  	h1{
+  		margin-left:0;
+  }
+ 
+}
+
+#home-slider .slider-hill {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+#home-slider .slider-sun {
+    position: absolute;
+    right: 365px;
+    bottom: 100px;
+}
+#home-slider .slider-birds1 {
+    position: absolute;
+    right: 470px;
+    bottom: 75px;
+ }
+ #home-slider .slider-birds2 {
+    position: absolute;
+    right: 40px;
+    bottom: 150px;
+}
+  
+ 
+#home-slider .slider-house {
+    position: absolute;
+    right: 110px;
+    bottom: -30px;
+}
+.btnMargin{
+	margin: 4em 1em;
+}
+ 
+
+ 
+//end of slider template
+//homepage text
+#services{
+	margin: 4em 0;
+	img{
+		height: 4em;
+	}
+}
+//end of homepage text
 .toggle{
 	display:none;
 }
@@ -72,6 +135,9 @@ $teal: #00C0B9;
 	z-index: 1060;
 }
 body{
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 	h1,h2,h3, h4{
 		font-family: 'Wendy One', sans-serif;
 	}
@@ -87,6 +153,9 @@ body{
 	}
 
 }
+.dashboardPg{
+	margin-top:1em;
+}
 .disabled {
     z-index: 1000;
     background-color: lightgrey;
@@ -95,6 +164,7 @@ body{
 }
 
 #app{
+	flex: 1 0 auto;
 	hr{
 	border-top: 2px solid $navColor;
 	margin-top: 0;
@@ -103,7 +173,12 @@ body{
 }
 .formBlock{
 	padding: 3em;
+	margin: 1em;
+	border: 2px solid $darkTeal;
+	border-radius: $borderRadius;
+
 }
+
 
 .form-control{
 	margin-bottom: 1em;
@@ -210,7 +285,6 @@ nav{
 			margin-right: 0;
 		}
 		.subjectTitle{
-			
 			color: #fff;
 			
 		}
@@ -248,7 +322,16 @@ nav{
         padding:.5em;
 			a{
 				color: #555;
+				&:hover{
+					text-decoration: none;
+					color: $darkTeal;
+				}
 			}
+			&.new{
+    		margin: 2em 1em;
+    		padding: 3em;
+    	}
+
 
 }
 .orangeBtn{
@@ -261,10 +344,27 @@ nav{
     border-top: 0 solid $orange;
     border-right: 0 solid $orange;
     border-left: 0 solid $orange;
-    margin-top: 15px;
-    margin-left: -10px;
     border-radius: $borderRadius;
-    padding: 1em;
+    	&:hover{
+    			text-decoration: none;
+    			color: $darkTeal;
+    	}
+    	&.add{
+    		padding: 1em;
+    		margin-top: 15px;
+    		margin-left: -10px;
+    		
+    	}
+    	a{
+    		color: #fff;
+    		
+    	}
+    	&.dash{
+    		margin: 1em;
+    		padding: 1em;
+    	}
+
+    	
 }
 .closeModal{
 		float: right;
@@ -339,7 +439,6 @@ footer{
 						padding-top: 6px;
 						padding-bottom: 4px;
 	    				a{
-	    					color: #555;
 	    					text-transform: uppercase;
 						    font-size: 0.8em;
 						    font-weight: bold;
@@ -408,11 +507,21 @@ footer{
 				padding: 0 20px;
 				border-radius: $borderRadius;
 				border-bottom: 2px solid #ccc;	
-				color: #555;
-	    		text-transform: uppercase;
-				font-weight: bold;
-				letter-spacing: 1px;
+					a{
+						color: #555!important;
+					}
+	    		
 
+		}
+		.orangeNav{
+			background-color: $orange;
+			padding: 0 20px;
+			border-radius: $borderRadius;
+			border-bottom: 2px solid $darkOrange;
+			display: inline;	
+				a{
+					color: #fff;
+				}
 		}
 		
 		
@@ -435,3 +544,6 @@ footer{
 
 }	
 
+@media screen and (min-width:992px){
+
+}

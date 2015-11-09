@@ -6,9 +6,8 @@ youngStar is a website for youngsters to visualize schoolwork successes and fail
 
 In the first use of youngStar, parents will setup points for graded assignments. For example, homework assignments could have the follow points: A= 10 points, B= 5 points, C=0 points, D= -5, F= -10. These points can vary between homework, tests and projects and can be edited at any point. In this initial set up, parents will also set the rewards to be achieved by these points. 
 
-These rewards and points will be displayed to the youngster on their point board so they understand what they are working towards and what it will take to accomplish that goal. **
+These rewards and points will be displayed to the youngster on their point board so they understand what they are working towards and what it will take to accomplish that goal. 
 
-The point board will have boxes for each 
 
 Every time an assignment or test comes home graded, parents and their youngsters will login to youngStar. Parents will keep their password a secret and must be present while the youngster is logging in. The youngster will be in charge of entering in their graded assignment (what class it was in, what type of assignment it was and the grade they recieved) and submit the pre-determined points on their board. 
 
@@ -16,7 +15,7 @@ Once the youngster has recieved the correct amount of points to redeem a reward,
 
 Once the reward reaches 0, something cool will happen. 
 
-**Phase two of project. For phase one, this information will be manually entered.
+
 
 ## User Stories
 
@@ -25,6 +24,7 @@ https://trello.com/b/JZ83lvJm/youngstar
 ## Wireframes
 
 [youngStar WireFrames PDF](/images/youngStar.pdf)
+
 
 ## Models
 

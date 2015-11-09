@@ -2,6 +2,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
+var _ = require('backbone/node_modules/underscore');
 window.$ = require('jquery');
 window.jQuery = $;
 require('jquery-ui');
@@ -16,12 +17,16 @@ var RegisterComponent = require('./components/RegisterComponent');
 // var StudentModel = require('./models/StudentModel');
 var AddChildComponent = require('./components/AddChildComponent');
 var PointBoardComponent = require('./components/PointBoardComponent');
+var DashboardComponent = require('./components/DashboardComponent');
 var AssignmentDetailsComponent = require('./components/AssignmentDetailComponent');
+
 
 Parse.initialize(
 	's8ymxzLxffDiYnjpMiXv6WMSebgMvt3FFwWoiBNK',
 	'zI8sNxFoFKso2OgRpwXiviI9qmuP3vu4x9X0vRDG'
 );
+var navDispatcher = {};
+	_.extend(navDispatcher, Backbone.Events);
 
 var Router = Backbone.Router.extend({
 	routes: {
@@ -29,6 +34,7 @@ var Router = Backbone.Router.extend({
 		'login' : 'login',
 		'register': 'register',
 		'addChild': 'addChild',
+		'dashboard': 'dashboard',
 		'pointBoard/:id': 'pointBoard',
 		'assignmentDetails/:id/:subject': 'assignmentDetails'
 	},
@@ -39,7 +45,10 @@ var Router = Backbone.Router.extend({
 		ReactDOM.render(<RegisterComponent router={r} />, app);
 	},
 	addChild: function() {
-		ReactDOM.render(<AddChildComponent router={r} />, app);
+		ReactDOM.render(<AddChildComponent navDispatcher={navDispatcher} router={r} />, app);
+	},
+	dashboard: function() {
+		ReactDOM.render(<DashboardComponent router={r} />, app);
 	},
 	pointBoard: function(id) {
 		ReactDOM.render(
@@ -69,7 +78,7 @@ var r = new Router();
 Backbone.history.start();
 
 ReactDOM.render(
-	<NavigationComponent router={r} />,
+	<NavigationComponent navDispatcher={navDispatcher} router={r} />,
 	document.getElementById('nav')
 );
 
