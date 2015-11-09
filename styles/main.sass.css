@@ -52,7 +52,7 @@
   bottom: -30px; }
 
 .btnMargin {
-  margin-top: 4em; }
+  margin: 4em 1em; }
 
 #services {
   margin: 4em 0; }
@@ -267,6 +267,9 @@ nav .navbar-inner {
   padding: .5em; }
   .viewAllAssign a {
     color: #555; }
+    .viewAllAssign a:hover {
+      text-decoration: none;
+      color: #015456; }
   .viewAllAssign.new {
     margin: 2em 1em;
     padding: 3em; }
@@ -288,6 +291,9 @@ nav .navbar-inner {
     margin-left: -10px; }
   .orangeBtn a {
     color: #fff; }
+    .orangeBtn a:hover {
+      text-decoration: none;
+      color: #015456; }
   .orangeBtn.dash {
     margin: 1em;
     padding: 1em; }

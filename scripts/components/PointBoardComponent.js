@@ -17,12 +17,15 @@ module.exports = React.createClass({
 		this.dispatcher = {};
    		_.extend(this.dispatcher, Backbone.Events);
 		this.dispatcher.on('assignmentSubmit', () => {
-      	this.forceUpdate();
-   	 });
+	      	this.forceUpdate();
+	   	 },this);
 		this.props.router.on('route', () => {
 			this.fetchBoard();
-		});
+		},this);
 		this.fetchBoard();
+	},
+	componentWillUnmount: function(){
+		this.dispatcher.off(null, null, this);
 	},
 	render: function(){
 		//checking to make sure the student and subject has loaded.
@@ -36,18 +39,18 @@ module.exports = React.createClass({
 		var subjectRows = this.state.student.get('subjects')
 		.map((subject) => {
 			return(
-				<ClassBoxComponent dispatcher={this.dispatcher} student={this.state.student} subject={subject}/>
+				<ClassBoxComponent key={this.state.student.id+subject} dispatcher={this.dispatcher} student={this.state.student} subject={subject}/>
 			)
 		});
 			
 		//passing through information about the student and subject to the classboxcomponent.
 			var ptArray = this.state.student.get('rewards');
 			var smallArray = ptArray.sort();
-			console.log(smallArray);
+			// console.log(smallArray);
 
 			var prizeRows = smallArray.map((prize) =>{
 				return(
-						<RedeemBoxComponent dispatcher={this.dispatcher} student={this.state.student} points={prize.points} prize={prize.rewards}/>
+						<RedeemBoxComponent key={prize.rewards} dispatcher={this.dispatcher} student={this.state.student} points={prize.points} prize={prize.rewards}/>
 				)
 			});
 
