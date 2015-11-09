@@ -50284,8 +50284,6 @@ module.exports = React.createClass({
 },{"../models/StudentModel":191,"backbone":1,"react":174,"react-dom":19}],185:[function(require,module,exports){
 'use strict';
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
@@ -50332,13 +50330,14 @@ module.exports = React.createClass({
 			});
 
 			//passing through information about the student and subject to the classboxcomponent.
-			var points = [].concat(_toConsumableArray(this.state.student.get('rewards')));
-			points.sort(function (a, b) {
-				return a.points > b.points;
-			});
-			var prizeRows = points.map(function (prize) {
+			var ptArray = this.state.student.get('rewards');
+			var smallArray = ptArray.sort();
+			console.log(smallArray);
+
+			var prizeRows = smallArray.map(function (prize) {
 				return React.createElement(RedeemBoxComponent, { dispatcher: _this2.dispatcher, student: _this2.state.student, points: prize.points, prize: prize.rewards });
 			});
+
 			return React.createElement(
 				'div',
 				null,
