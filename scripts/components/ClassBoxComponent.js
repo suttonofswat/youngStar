@@ -66,17 +66,17 @@ module.exports = React.createClass({
 		console.log(this.props);
 		e.preventDefault();
 		var gradePts = 0;
-		if(this.refs.grade.value.toUpperCase() === 'A'){
+		if(this.refs.grade.value.toUpperCase() === 'A' || this.refs.grade.value.toUpperCase() === 'A-' || this.refs.grade.value.toUpperCase() === 'A+'){
 
 			gradePts = parseFloat(10);
 		
-		}else if(this.refs.grade.value.toUpperCase() === 'B'){
+		}else if(this.refs.grade.value.toUpperCase() === 'B' || this.refs.grade.value.toUpperCase() === 'B-' || this.refs.grade.value.toUpperCase() === 'B+'){
 			gradePts = parseFloat(5);
 			
-		}else if(this.refs.grade.value.toUpperCase() === 'D'){
+		}else if(this.refs.grade.value.toUpperCase() === 'D' || this.refs.grade.value.toUpperCase() === 'D-' || this.refs.grade.value.toUpperCase() === 'D+'){
 			gradePts = parseFloat(-5);
 			
-		}else if(this.refs.grade.value.toUpperCase() === 'C'){
+		}else if(this.refs.grade.value.toUpperCase() === 'C' || this.refs.grade.value.toUpperCase() === 'C-' || this.refs.grade.value.toUpperCase() === 'C+'){
 			gradePts = parseFloat(0);
 		
 		}else if(this.refs.grade.value.toUpperCase() === 'F'){
