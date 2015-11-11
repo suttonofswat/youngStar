@@ -46,7 +46,7 @@ module.exports = React.createClass({
 					BtnLinks.push(
 						<span>
 						<h3 className="kBoard hidden-xs">Kids Boards:</h3>
-						<li className="boardLinks" key={a.id}><a href={'#pointBoard/'+a.id}>{a.get('firstName')}s Board</a>
+						<li className="boardLinks" key={a.id}><a href={'#pointBoard/'+a.id}>{a.get('firstName')}'s Board</a>
 						</li>
 						</span>
 

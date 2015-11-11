@@ -35,7 +35,7 @@ module.exports = React.createClass({
 
 									    <img src="../images/home-outline.png" alt=""></img>
 
-										<h2>Teaching Responseability</h2>
+										<h2>Teaching Responsibility</h2>
 
 										<p>Students will come home with graded assignments and enter them into their point board.</p>
 								</div>

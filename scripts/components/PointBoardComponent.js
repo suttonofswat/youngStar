@@ -58,7 +58,7 @@ module.exports = React.createClass({
 				<div>
 					<div className="container">
 						<div className="row">
-							<span className="kHead col-sm-8"><h2>{this.state.student.get('firstName')}s Star Board</h2></span>
+							<span className="kHead col-sm-8"><h2>{this.state.student.get('firstName')}'s Star Board</h2></span>
 							<span className="currentPts col-sm-4"><h2 ref="currentPts" id="totalPoints">Current Points: {this.state.student.get('points')}</h2></span>
 						</div>					
 					</div>

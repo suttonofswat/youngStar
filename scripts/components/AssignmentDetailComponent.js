@@ -91,7 +91,7 @@ module.exports = React.createClass({
 			}
 			return (
             <div>
-            	<h1>{this.state.student.get('firstName')}s {this.props.subject} Assignments</h1>
+            	<h1>{this.state.student.get('firstName')}'s {this.props.subject} Assignments</h1>
             	<div className="container">
 	            	<div className="row">
 	            		<div className="col-sm-4">

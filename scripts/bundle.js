@@ -49359,7 +49359,7 @@ module.exports = React.createClass({
 					'h1',
 					null,
 					this.state.student.get('firstName'),
-					's ',
+					'\'s ',
 					this.props.subject,
 					' Assignments'
 				),
@@ -49799,7 +49799,7 @@ module.exports = React.createClass({
 								React.createElement(
 									'h2',
 									null,
-									'Teaching Responseability'
+									'Teaching Responsibility'
 								),
 								React.createElement(
 									'p',
@@ -50244,7 +50244,7 @@ module.exports = React.createClass({
 							'a',
 							{ href: '#pointBoard/' + a.id },
 							a.get('firstName'),
-							's Board'
+							'\'s Board'
 						)
 					)
 				));
@@ -50458,7 +50458,7 @@ module.exports = React.createClass({
 								'h2',
 								null,
 								this.state.student.get('firstName'),
-								's Star Board'
+								'\'s Star Board'
 							)
 						),
 						React.createElement(
